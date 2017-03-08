@@ -1,0 +1,36 @@
+{
+    "compilerOptions": {
+        "noImplicitAny": true,
+        "module": "commonjs",
+        "target": "ES6",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "sourceMap": true,
+        "declaration": true
+    },
+    "files": [
+        "index.ts",
+        "components/app.ts",
+        "components/breadcrumb.ts",
+        "components/currentNav.ts",
+        "components/footer.ts",
+        "components/hero.ts",
+        "components/navBarVertical.ts",
+        "components/notificationBadge.ts",
+        "components/subscriptionBadge.ts",
+        "components/topMenu.ts",
+        "models/hero.ts",
+        "models/message.ts",
+        "models/navNode.ts",
+        "models/subscription.ts",
+        "services/breadcrumb.ts",
+        "services/configService.ts",
+        "services/currentNavProvider.ts",
+        "services/hero.ts",
+        "services/notifications.ts",
+        "services/subscriptions.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
