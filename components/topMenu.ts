@@ -28,12 +28,33 @@ import * as $ from "jquery";
         </nav>
     `,
     styles: [
+        ".navbar { z-index: 10001; padding-left: 60px; -webkit-transition: all 0.25s; transition: all 0.25s; }",
+        ".navbar > .container, .navbar > .container-fluid { z-index: 10001; }",   
+        ".navbar > .container .navbar-expand-toggle, .navbar > .container-fluid .navbar-expand-toggle { width: 60px; height: 60px; background-color: transparent; border: 0px; float: left; -moz-transition: all 0.25s linear; -webkit-transition: all 0.25s linear; transition: all 0.25s linear; opacity: 0.75; }",
+        ".navbar > .container .navbar-expand-toggle .icon, .navbar > .container-fluid .navbar-expand-toggle .icon { font-size: 1.4em; }",
+        ".navbar > .container .navbar-right-expand-toggle, .navbar > .container-fluid .navbar-right-expand-toggle { width: 60px; height: 60px; background-color: transparent; border: 0px; position: absolute; right: 0; -moz-transition: all 0.25s linear; -webkit-transition: all 0.25s linear; transition: all 0.25s linear; opacity: 0.75; }",
+        ".navbar > .container .navbar-right-expand-toggle .icon, .navbar > .container-fluid .navbar-right-expand-toggle .icon { font-size: 1.4em; }",
+        ":host-context(.app-container.expanded .content-container) .navbar-top { padding-left: 250px; }",        
+        ".container-fluid > .navbar-collapse, .container-fluid > .navbar-header, .container > .navbar-collapse, .container > .navbar-header { margin-left: -15px; margin-right: -15px; }",
+        "@media (max-width: 768px) {",
+        "  .navbar { padding-left: 0; }",
+        "  .navbar .navbar-header { width: auto; display: block; }",
+        "  .navbar .navbar-nav { width: auto; margin: 0; }",
+        "  .navbar .navbar-nav > li { display: inline-block; }",
+        "  .navbar .navbar-right { position: absolute;top: 0;right: -100%;height: 100%;width: 100%;-moz-transition: all 0.25s linear;-webkit-transition: all 0.25s linear; transition: all 0.25s linear; }",
+        "  .navbar .navbar-right .open .dropdown-menu { position: absolute; }",
+        "  .navbar .navbar-right.expanded { right: 0; }",
+        "  :host-context(.app-container) .navbar-top { min-width: 300px; }",
+        "  :host-context(.app-container.expanded) .navbar-top { min-width: 480px; padding-left: 0px; }",
+        "}",
+
+        //
+        // review styles below
+        //
         ".navbar-top > .navbar-container { background-color: black !important; }",
         ".navbar .navbar-nav > li > a { color: white; }",
         ".navbar.navbar-default .navbar-nav > li > a { color: white; }",
         ".navbar .navbar-breadcrumb li a, .navbar.navbar-default .navbar-breadcrumb li a, .navbar .navbar-header .navbar-expand-toggle, .navbar.navbar-default .navbar-header .navbar-expand-toggle { color: white; }",
-        ".navbar .navbar-nav .dropdown-menu .title, .navbar.navbar-default .navbar-nav .dropdown-menu .title { color: #444; }",
-        ".navbar .navbar-nav .dropdown-menu .message, .navbar.navbar-default .navbar-nav .dropdown-menu .message { color: #444; }",
         ".navbar .navbar-nav > li, .navbar.navbar-default .navbar-nav > li { border-color: black; }",
         ".navbar.navbar-default .navbar-breadcrumb li, .navbar.navbar-default .navbar-breadcrumb li a, .navbar.navbar-default .navbar-header .navbar-expand-toggle, .navbar.navbar-default .navbar-header .navbar-right-expand-toggle, .navbar .navbar-header .navbar-expand-toggle, .navbar .navbar-header .navbar-right-expand-toggle { color: white !important; }",
         ".navbar.navbar-top .navbar-spacer { float: left; width: 25px; }",

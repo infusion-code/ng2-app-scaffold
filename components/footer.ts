@@ -13,7 +13,14 @@
     `,
     styles: [
         ":host .fa, :host .wrapper { color: #aaa; }",
-        ":host .fa {padding-left: 10px; }"
+        ":host .fa {padding-left: 10px; }",
+        ".app-footer { display: block; position: absolute;bottom: 0;right: 0;left: 65px;-webkit-transition: all 0.25s;transition: all 0.25s;font-size: 12px;font-family: 'Roboto Condensed', sans-serif; }",
+        ".app-footer .wrapper {padding: 10px 35px;padding-left: 25px;height: 50px;line-height: 50px; vertical-align: middle; }",
+        ":host-context(.app-container.expanded) .app-footer { left: 250px; }",
+        ":host-context(.app-container.expanded) .app-footer .wrapper {  padding-left: 25px; } ",
+        "@media (max-width: 768px) {",
+        "  :host-context(.app-container) .app-footer .wrapper, :host-context(.app-container.expanded) .app-footer .wrapper { padding-left: 25px; } ",
+        "}"
     ]
 })
 export class Footer {

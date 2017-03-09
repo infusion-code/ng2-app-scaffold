@@ -21,6 +21,7 @@ import { CurrentNav } from './components/currentNav';
 import { VerticalNavBar } from './components/navBarVertical';
 import { Footer } from './components/footer';
 import { AppComponent } from './components/app';
+import { GlobalCss} from './components/globalCss';
 
 // service imports
 import { BreadcrumbService } from './services/breadcrumb';
@@ -36,7 +37,7 @@ export { NavNode, Hero, Message, Subscription, AppComponent, Breadcrumb, Current
 // module definition
 @NgModule({
     imports: [CommonModule, RouterModule ],
-    declarations: [AppComponent, Breadcrumb, CurrentNav, GlobalNav, Footer, HeroComponent, NotificationBadge, SubscriptionBadge, VerticalNavBar],
+    declarations: [AppComponent, GlobalCss, Breadcrumb, CurrentNav, GlobalNav, Footer, HeroComponent, NotificationBadge, SubscriptionBadge, VerticalNavBar],
     exports: [AppComponent, Breadcrumb, CurrentNav, GlobalNav, Footer, HeroComponent, NotificationBadge, SubscriptionBadge, CommonModule, RouterModule],
     providers: [BreadcrumbService, HeroService, NotificationsService, SubscriptionService, CurrentNavProvider, ConfigService]
 })

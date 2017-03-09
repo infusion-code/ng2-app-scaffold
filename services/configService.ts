@@ -7,6 +7,7 @@ export class ConfigService {
     protected _showSubscriptions: boolean;
     protected _showHero: boolean;
     protected _showNotifications: boolean;
+    protected _useGlobalCss: boolean;
     protected _title: string;
     protected _faIcon: string;
     protected _copyright: string;
@@ -22,6 +23,7 @@ export class ConfigService {
     public get Copyright(): string { return this._copyright; }
     public get Version(): string { return this._version; }
     public get ReleaseNotes(): string { return this._releaseNotes; }
+    public get UseGlobalCss(): boolean { return this._useGlobalCss; }
 
     constructor() {
         this._title = "App Title";
@@ -30,6 +32,7 @@ export class ConfigService {
         this._showSubscriptions = true;
         this._showHero = true;
         this._showNotifications = true;
+        this._useGlobalCss = true;
         this._copyright = "Copyright © 2010-2017, Infusion.";
         this._version = "0.0.1";
         this._releaseNotes = "";
