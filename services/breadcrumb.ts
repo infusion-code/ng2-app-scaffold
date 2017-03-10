@@ -45,14 +45,16 @@ export class BreadcrumbService implements OnDestroy {
             childrenRoutes.forEach(route => {
                 if (route.outlet === 'primary') {
                     let routeSnapshot = route.snapshot;
+                    let name:string;
                     console.log('snapshot:', routeSnapshot)
                     url += '/' + routeSnapshot.url.map(segment => segment.path).join('/');
+                    name = route.snapshot.data["breadcrumb"] ? route.snapshot.data["breadcrumb"] : url.substring(url.lastIndexOf("/")+1);
                     if (routeSnapshot.params != null && routeSnapshot.params["name"] != null) {
-                        this._breadcrumbNodes.push(new NavNode(route.snapshot.data["breadcrumb"], null, this._navNodeIdPrefix + (id++).toString()));
+                        this._breadcrumbNodes.push(new NavNode(name, null, this._navNodeIdPrefix + (id++).toString()));
                         this._breadcrumbNodes.push(new NavNode(routeSnapshot.params["name"], url, this._navNodeIdPrefix + (id++).toString()));
                     }
                     else {
-                        this._breadcrumbNodes.push(new NavNode(route.snapshot.data["breadcrumb"], url, this._navNodeIdPrefix + (id++).toString()));
+                        this._breadcrumbNodes.push(new NavNode(name, url, this._navNodeIdPrefix + (id++).toString()));
                     }
                     currentRoute = route;
                 }

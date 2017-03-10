@@ -10,32 +10,31 @@ import { ConfigService } from '../services/configService';
                 <global-nav [ShowLeftNavToggle]="ShowLeftNavToggle" [ShowSubscriptions]="ShowSubscriptions" [ShowHero]="ShowHero" [ShowNotifications]="ShowNotifications"></global-nav>
                 <current-nav [HomeLabel]="Title" [HomeIcon]="AppIcon"></current-nav>
                 <!-- Main Content -->
-                <div class="container-fluid">
+                <div class="container-fluid padding-top">
                     <router-outlet></router-outlet>
                 </div>   
             </div>
             <app-footer [Copyright]="Copyright" [Version]="Version" [VersionNotes]="ReleaseNotes" ></app-footer>
         </div>
     `,
-    styles: [
-        ".app-container {  min-height: 100%; position: relative; padding-bottom: 60px; }",
-        ".app-container .content-container { margin-right: 0; margin-left: 0; }",
-        ".container-fluid > .navbar-collapse, .container-fluid > .navbar-header, .container > .navbar-collapse, .container > .navbar-header { margin-left: -15px; margin-right: -15px; }",
-        ".page-title { font-family: 'Roboto Condensed', sans-serif;margin-left: -10px;margin-right: -10px; padding: 15px 10px; margin-bottom: 0px; height: auto; }",
-        ".page-title .title { font-size: 2em; }",
-        ".page-title .page-action {float: right;height: 40px; line-height: 40px; vertical-align: middle; }",
-        ".sub-title { font-family: 'Roboto Condensed', sans-serif; }",
-        ".sub-title > * { display: inline-block; }",
-        ".sub-title h3 { margin-right: 10px; }",
-        ".sub-title .description { font-family: 'Roboto Condensed', sans-serif; font-size: 0.9em; }",
-        ".sub-title .action .btn { padding: 0 0.5em; }",
-        "@media (max-width: 768px) {",
-        "  .body-content { padding-top: 50px; }",
-        "  .app-container .content-container .side-body { margin-left: 10px; }",
-        "  .app-container.expanded .side-body { margin-left: 10px; }",
-        "}"
-
-    ],
+    styles: [`
+        .app-container {  min-height: 100%; position: relative; padding-bottom: 60px; }
+        .app-container .content-container { margin-right: 0; margin-left: 0; }
+        .container-fluid > .navbar-collapse, .container-fluid > .navbar-header, .container > .navbar-collapse, .container > .navbar-header { margin-left: -15px; margin-right: -15px; }
+        .page-title { font-family: 'Roboto Condensed', sans-serif;margin-left: -10px;margin-right: -10px; padding: 15px 10px; margin-bottom: 0px; height: auto; }
+        .page-title .title { font-size: 2em; }
+        .page-title .page-action {float: right;height: 40px; line-height: 40px; vertical-align: middle; }
+        .sub-title { font-family: 'Roboto Condensed', sans-serif; }
+        .sub-title > * { display: inline-block; }
+        .sub-title h3 { margin-right: 10px; }
+        .sub-title .description { font-family: 'Roboto Condensed', sans-serif; font-size: 0.9em; }
+        .sub-title .action .btn { padding: 0 0.5em; }
+        @media (max-width: 768px) {
+          .body-content { padding-top: 50px; }
+          .app-container /deep/ .content-container .side-body { margin-left: 10px; }
+          .app-container.expanded /deep/ .side-body { margin-left: 10px; }
+        }
+    `],
 })
 export class AppComponent {
     private _config: ConfigService;

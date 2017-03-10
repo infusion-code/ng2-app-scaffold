@@ -13,13 +13,13 @@ import 'rxjs/add/operator/filter';
                 <span *ngIf="(node.Url == null || node.Url == '')" id={{node.Id}}>{{node.Title}}</span>
             </li>
         </ol>`,
-    styles: [
-        ":host { float: left }",
-        "* { color: white !Important ;}",
-        ".navbar-breadcrumb { margin-left: 0px; background-color: transparent; padding: 0px; }",
-        ".navbar-breadcrumb > li { height: 60px; line-height: 60px; vertical-align: middle; font-family: 'Roboto Condensed', sans-serif; font-size: 1.5em; }"
-
-    ]
+    styles: [`
+        :host { float: left }
+        * { color: white !Important ;}
+        .breadcrumb.navbar-breadcrumb { margin-bottom: 0px; }
+        .navbar-breadcrumb { margin-left: 0px; background-color: transparent; padding: 0px; }
+        .navbar-breadcrumb > li { height: 60px; line-height: 60px; vertical-align: middle; font-family: 'Roboto Condensed', sans-serif; font-size: 1.5em; }
+    `]
 })
 export class Breadcrumb {
     private _breadcrumbService: BreadcrumbService;

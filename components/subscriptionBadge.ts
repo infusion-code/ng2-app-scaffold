@@ -36,30 +36,30 @@ import { Subscription } from '../models/subscription';
             </ul>
         </li>
     `,
-    styles: [
-        ":host { float: left; }",
-        ":host > li, :host > li > a { display: block }",
-        ":host > li > a { font-family: 'Roboto Condensed', sans-serif; height: 60px; line-height: 60px; padding: 0px 20px 0px 20px; }",
-        ":host > li.danger > a { background-color: transparent; border-bottom: 4px solid #FA2A00; }",
-        ":host > li.danger.open > a { background-color: #FA2A00; color: #FFF; }",
-        ":host > li > a { font-family: 'Roboto Condensed', sans-serif; height: 60px; line-height: 60px; padding: 0px 20px 0px 20px; color: #fff }",
-        ".dropdown-menu { padding: 0; border: 0; border-bottom-left-radius: 2px; border-bottom-right-radius: 2px; animation-duration: 0.4s; -webkit-animation-duration: 0.4s; z-index: -1; position: absolute; }",
-        ".dropdown-menu .notifications.list-group {list-style: none; padding: 0;margin: 0; }",
-        ".dropdown-menu .notifications.list-group .list-group-item { min-width: 250px; padding: 8px; border: 0; border-bottom: 1px solid #EEE; }",
-        ".dropdown-menu .notifications.list-group .list-group-item .icon { margin-right: 5px; }",
-        ".dropdown-menu .notifications.list-group .badge { border-radius: 1em; }",
-        ".dropdown-menu .notifications.list-group .list-group-item:last-child { border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; }",
-        ".dropdown-menu .notifications.list-group .list-group-item:first-child { border-top-right-radius: 0px; border-top-left-radius: 0px; }",
-        ".dropdown-menu .notifications.list-group a.list-group-item:hover { cursor: pointer; }",       
-        ".dropdown-menu .title { font-family: 'Roboto Condensed', sans-serif; padding: 5px 10px; -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); }",
-        ".dropdown-menu .message { font-family: 'Roboto Condensed', sans-serif; text-align: center; padding: 10px 20px; color: #444; text-decoration: none; }",
-        ".dropdown > a:hover, :host > li.danger.open > a { text-decoration: none; color: #ddd}",
-        ":host > li.danger.open .dropdown-menu.danger { border-color: #FA2A00; }",
-        ":host > li.danger.open .dropdown-menu.danger .title { background-color: #FA2A00; color: #FFF; }",
-        ":host > li.danger.open .dropdown-menu.danger .title .badge { background-color: #FFF; color: #FA2A00; }",
-        ":host .badge.success { background-color: green }",
-        ":host .badge.danger { background-color: red }"
-    ]
+    styles: [`
+        :host { float: left; }
+        :host > li, :host > li > a { display: block }
+        :host > li > a { font-family: 'Roboto Condensed', sans-serif; height: 60px; line-height: 60px; padding: 0px 20px 0px 20px; }
+        :host > li.danger > a { background-color: transparent; border-bottom: 4px solid #FA2A00; }
+        :host > li.danger.open > a { background-color: #FA2A00; color: #FFF; }
+        :host > li > a { font-family: 'Roboto Condensed', sans-serif; height: 60px; line-height: 60px; padding: 0px 20px 0px 20px; color: #fff }
+        .dropdown-menu { padding: 0; border: 0; border-bottom-left-radius: 2px; border-bottom-right-radius: 2px; animation-duration: 0.4s; -webkit-animation-duration: 0.4s; z-index: -1; position: absolute; }
+        .dropdown-menu .notifications.list-group {list-style: none; padding: 0;margin: 0; }
+        .dropdown-menu .notifications.list-group .list-group-item { min-width: 250px; padding: 8px; border: 0; border-bottom: 1px solid #EEE; }
+        .dropdown-menu .notifications.list-group .list-group-item .icon { margin-right: 5px; }
+        .dropdown-menu .notifications.list-group .badge { border-radius: 1em; }
+        .dropdown-menu .notifications.list-group .list-group-item:last-child { border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; }
+        .dropdown-menu .notifications.list-group .list-group-item:first-child { border-top-right-radius: 0px; border-top-left-radius: 0px; }
+        .dropdown-menu .notifications.list-group a.list-group-item:hover { cursor: pointer; }
+        .dropdown-menu .title { font-family: 'Roboto Condensed', sans-serif; padding: 5px 10px; -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); }
+        .dropdown-menu .message { font-family: 'Roboto Condensed', sans-serif; text-align: center; padding: 10px 20px; color: #444; text-decoration: none; }
+        .dropdown > a:hover, :host > li.danger.open > a { text-decoration: none; color: #ddd}
+        :host > li.danger.open .dropdown-menu.danger { border-color: #FA2A00; }
+        :host > li.danger.open .dropdown-menu.danger .title { background-color: #FA2A00; color: #FFF; }
+        :host > li.danger.open .dropdown-menu.danger .title .badge { background-color: #FFF; color: #FA2A00; }
+        :host .badge.success { background-color: green }
+        :host .badge.danger { background-color: red }
+    `]
 })
 export class SubscriptionBadge implements OnInit {
     private _service: SubscriptionService;

@@ -10,7 +10,7 @@ import { NavNode } from '../models/navNode';
                 <ng-container *ngFor="let n of _root.Children">
                     <li *ngIf="n.Children.length==0" class="" [routerLinkActive]="['active']">
                         <a [routerLink]="[n.Url]" id="{{n.Id}}">
-                            <span class="icon fa {{n.FAIcon}}"></span><span class="title">{{n.Title}}</span>
+                            <span class="icon fa {{n.FAIcon}}"></span><span class="title {{n.Title.length > 25 ? 'multiline' : ''}} ">{{n.Title}}</span>
                         </a>
                     </li>
                     <li *ngIf="n.Children.length>0" class="panel panel-default dropdown" [routerLinkActive]="['active']">
@@ -28,12 +28,12 @@ import { NavNode } from '../models/navNode';
             </ng-container>
         </ul>
     `,
-    styles: [
-        ":host .nav.navbar-nav > li > a:hover { color: #22A7F0; }",
-        ":host .nav.navbar-nav ul  li > a { height: auto; }",
-        ":host .nav.navbar-nav ul  li > a > span.icon.fa { float: left; display: block; height: 14px; padding-top: 15px; }",
-        ":host .nav.navbar-nav ul  li > a > span.title { white-space: normal; padding-left: 38px; display: block; box-sizing: border-box; width: 100%; }"
-    ]
+    styles: [`
+        :host .nav.navbar-nav > li > a:hover { color: #22A7F0; }
+        :host .nav.navbar-nav ul  li > a { height: auto; }
+        :host .nav.navbar-nav ul  li > a > span.icon.fa { float: left; display: block; height: 14px; padding-top: 15px; }
+        :host .nav.navbar-nav ul  li > a > span.title { white-space: normal; padding-left: 38px; display: block; box-sizing: border-box; width: 100%; }
+    `]
 })
 export class VerticalNavBar implements OnInit {
 
