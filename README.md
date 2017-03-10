@@ -4,42 +4,48 @@ Angular2 scaffold that provides a set of components to create a repsonsive, mode
 # Install
 Install via npm:
 
+```
     npm install --save ng2-app-scaffold
+```
 
 # Use
 Import AppScaffoldModule and AppComponent in your main app module (usually app.module.ts). Note that the scaffold comes with a predefined AppComponent for bootstrapping, there is not need to create a AppComponent in your ng2 project. That is the whole point. 
 
->    import { AppComponent, AppScaffoldModule } from 'ng2-app-scaffold'
+```
+    import { AppComponent, AppScaffoldModule } from 'ng2-app-scaffold'
+```
 
 Add the AppComponent as the bootstrap for your ng2 module and import the AppScaffoldModule (note: the module must be listed prior to the route configuration. Inject any concrete implementations for providers to configure navigation, profile service, breadcrumb service, etc.
 
->    @NgModule({
->        bootstrap: [ AppComponent ],
->        declarations: [
->            ...
->        ],
->        imports: [
->            UniversalModule, // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too.
->            AppScaffoldModule,
->            RouterModule.forRoot([
->                ...
->            ])
->        ],
->        providers: [
->            {
->                provide: CurrentNavProvider, deps: [...], useFactory: (...) => {
->                    return new CurrentNavService(...);  
->                        // this is your implementation of the current navigation provider. 
->                }
->            },
->            {
->                provide: ConfigService, deps: [], useFactory: () => {
->                    return new AppConfigService(); 
->                        // this is your implementation of the configuration service.
->                }
->            }
->        ]
->    })
+```
+    @NgModule({
+        bootstrap: [ AppComponent ],
+        declarations: [
+            ...
+        ],
+        imports: [
+            UniversalModule, // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too.
+            AppScaffoldModule,
+            RouterModule.forRoot([
+                ...
+            ])
+        ],
+        providers: [
+            {
+                provide: CurrentNavProvider, deps: [...], useFactory: (...) => {
+                    return new CurrentNavService(...);  
+                        // this is your implementation of the current navigation provider. 
+                }
+            },
+            {
+                provide: ConfigService, deps: [], useFactory: () => {
+                    return new AppConfigService(); 
+                        // this is your implementation of the configuration service.
+                }
+            }
+        ]
+    })
+```
 
 #Advanced
 Check out the [Wiki](./wiki) for detailed documentation on components, models and providers. 
