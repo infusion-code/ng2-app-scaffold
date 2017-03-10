@@ -24,7 +24,7 @@ Add the AppComponent as the bootstrap for your ng2 module and import the AppScaf
             ...
         ],
         imports: [
-            UniversalModule, // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too.
+            UniversalModule,
             AppScaffoldModule,
             RouterModule.forRoot([
                 ...
@@ -48,4 +48,4 @@ Add the AppComponent as the bootstrap for your ng2 module and import the AppScaf
 ```
 
 #Advanced
-Check out the [Wiki](./wiki) for detailed documentation on components, models and providers. 
+Check out the [Wiki](../../wiki) for detailed documentation on components, models and providers. 
