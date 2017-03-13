@@ -48,10 +48,8 @@ import { Subscription } from '../models/subscription';
         .dropdown-menu .notifications.list-group .list-group-item { min-width: 250px; padding: 8px; border: 0; border-bottom: 1px solid #EEE; cursor: default; }
         .dropdown-menu .notifications.list-group .list-group-item .icon { margin-right: 5px; }
         .dropdown-menu .notifications.list-group .badge { border-radius: 1em; }
-        .dropdown-menu .notifications.list-group .list-group-item:last-child { border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; }
-        .dropdown-menu .notifications.list-group .list-group-item:first-child { border-top-right-radius: 0px; border-top-left-radius: 0px; }
         .dropdown-menu .notifications.list-group > a[href] .list-group-item { cursor: pointer !important; }
-        .dropdown-menu .notifications.list-group a[href] .list-group-item:hover { background-color: rgba(100,100,100,0.1); }
+        .dropdown-menu .notifications.list-group > a[href] .list-group-item:hover { background-color: rgba(100,100,100,0.1); }
         .dropdown-menu .title { font-family: 'Roboto Condensed', sans-serif; padding: 5px 10px; -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); }
         .dropdown-menu .message { font-family: 'Roboto Condensed', sans-serif; text-align: center; padding: 10px 20px; color: #444; text-decoration: none; }
         .dropdown > a:hover, :host > li.danger.open > a { text-decoration: none; color: #ddd}

@@ -7,7 +7,7 @@ import { ConfigService } from '../services/configService';
         <global-css *ngIf="UseGlobalCss == true"></global-css>
         <div class='app-container' [ngClass]="{'expanded': _sideMenuExpanded }">
             <div class="row content-container">
-                <global-nav [ShowLeftNavToggle]="ShowLeftNavToggle" [ShowSubscriptions]="ShowSubscriptions" [ShowHero]="ShowHero" [ShowNotifications]="ShowNotifications" (ToggleSideMenu)="ToggleSideMenu($event)"></global-nav>
+                <global-nav [ShowLeftNavToggle]="ShowLeftNavToggle" [ShowSubscriptions]="ShowSubscriptions" [ShowHero]="ShowHero" [ShowNotifications]="ShowNotifications" (SideMenuToggled)="ToggleSideMenu($event)"></global-nav>
                 <current-nav [HomeLabel]="Title" [HomeIcon]="AppIcon"></current-nav>
                 <!-- Main Content -->
                 <div class="container-fluid padding-top">
