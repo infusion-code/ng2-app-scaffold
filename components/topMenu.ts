@@ -1,5 +1,4 @@
-﻿import { Component, Input } from '@angular/core';
-import * as $ from "jquery";
+﻿import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'global-nav',
@@ -7,7 +6,7 @@ import * as $ from "jquery";
         <nav class="navbar navbar-default navbar-fixed-top navbar-top">
             <div class="container-fluid navbar-container">
                 <div class="navbar-header">
-                    <button *ngIf="ShowLeftNavToggle"  type="button" class="navbar-expand-toggle" (click)="ToggleSideMenu()">
+                    <button *ngIf="ShowLeftNavToggle"  type="button" [ngClass]="{'fa-rotate-90': _sideMenuToggled }" class="navbar-expand-toggle" (click)="ToggleSideMenu()">
                         <i class="fa fa-bars icon"></i>
                     </button>
                     <span *ngIf="!ShowLeftNavToggle" class="navbar-spacer">&nbsp;</span>
@@ -16,8 +15,8 @@ import * as $ from "jquery";
                         <i class="fa fa-th icon"></i>
                     </button>
                 </div>
-                <ul *ngIf="ShowSubscriptions || ShowHero || ShowNotifications" class="nav navbar-nav navbar-right">
-                    <button *ngIf="ShowSubscriptions || ShowHero || ShowNotifications" type="button" class="navbar-right-expand-toggle pull-right visible-xs" (click)="ToggleTopMenu()">
+                <ul *ngIf="ShowSubscriptions || ShowHero || ShowNotifications" [ngClass]="{'expanded' : _topMenuToggled}"  class="nav navbar-nav navbar-right">
+                    <button *ngIf="ShowSubscriptions || ShowHero || ShowNotifications" type="button" [ngClass]="{'fa-rotate-90': _topMenuToggled}" class="navbar-right-expand-toggle pull-right visible-xs" (click)="ToggleTopMenu()">
                         <i class="fa fa-times icon"></i>
                     </button>
                     <notificationBadge *ngIf="ShowNotifications"></notificationBadge>
@@ -64,15 +63,12 @@ import * as $ from "jquery";
     ]
 })
 export class GlobalNav {
-    private _leftNavContainerClass: string = ".app-container";
     private _showLeftNavToggle: boolean = true;
     private _showHero: boolean = true;
     private _showNotifications: boolean = true;
     private _showSubscriptions: boolean = true;
-
-    @Input()
-        public get LeftNavContainerClass(): string { return this._leftNavContainerClass; }
-        public set LeftNavContainerClass(val: string) { this._leftNavContainerClass = val; }
+    private _sideMenuToggled: boolean = true;
+    private _topMenuToggled: boolean = false;
 
     @Input()
         public get ShowLeftNavToggle(): boolean { return this._showLeftNavToggle; }
@@ -90,14 +86,13 @@ export class GlobalNav {
         public get ShowSubscriptions(): boolean { return this._showSubscriptions; }
         public set ShowSubscriptions(val: boolean) { this._showSubscriptions = val; }
 
+    @Output()
+        public SideMenuToggled: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     public ToggleSideMenu() {
-        $(this._leftNavContainerClass).toggleClass("expanded");
-        $(".navbar-expand-toggle").toggleClass("fa-rotate-90");
+        this._sideMenuToggled = !this._sideMenuToggled;
+        this.SideMenuToggled.emit(this._sideMenuToggled);
     }
 
-    public ToggleTopMenu() {
-        $(".navbar-right").toggleClass("expanded");
-        return $(".navbar-right-expand-toggle").toggleClass("fa-rotate-90");
-    }
+    public ToggleTopMenu() { this._topMenuToggled = !this._topMenuToggled;  }
 }

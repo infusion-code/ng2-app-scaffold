@@ -5,9 +5,9 @@ import { ConfigService } from '../services/configService';
     selector: 'app',
     template: `
         <global-css *ngIf="UseGlobalCss == true"></global-css>
-        <div class='app-container'>
+        <div class='app-container' [ngClass]="{'expanded': _sideMenuExpanded }">
             <div class="row content-container">
-                <global-nav [ShowLeftNavToggle]="ShowLeftNavToggle" [ShowSubscriptions]="ShowSubscriptions" [ShowHero]="ShowHero" [ShowNotifications]="ShowNotifications"></global-nav>
+                <global-nav [ShowLeftNavToggle]="ShowLeftNavToggle" [ShowSubscriptions]="ShowSubscriptions" [ShowHero]="ShowHero" [ShowNotifications]="ShowNotifications" (ToggleSideMenu)="ToggleSideMenu($event)"></global-nav>
                 <current-nav [HomeLabel]="Title" [HomeIcon]="AppIcon"></current-nav>
                 <!-- Main Content -->
                 <div class="container-fluid padding-top">
@@ -38,6 +38,7 @@ import { ConfigService } from '../services/configService';
 })
 export class AppComponent {
     private _config: ConfigService;
+    private _sideMenuExpanded:boolean = true;
 
     public get ShowLeftNavToggle(): boolean { return this._config.ShowLeftNavToggle; }
     public get ShowSubscriptions(): boolean { return this._config.ShowSubscriptions; }
@@ -52,5 +53,9 @@ export class AppComponent {
 
     constructor(config: ConfigService) {
         this._config = config;
+    }
+
+    public ToggleSideMenu(state:boolean){
+        this._sideMenuExpanded = state;
     }
 }
