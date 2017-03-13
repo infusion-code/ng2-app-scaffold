@@ -1,13 +1,16 @@
 {
     "compilerOptions": {
         "noImplicitAny": true,
-        "module": "commonjs",
-        "target": "ES6",
+        "moduleResolution": "node",
+        "target": "es5",
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "sourceMap": true,
         "declaration": true,
-        "outDir": "dist"
+        "outDir": "dist",
+        "skipDefaultLibCheck": true,
+        "lib": [ "es6", "dom" ],
+        "types": [ "node" ]
     },
     "files": [
         "index.ts",
