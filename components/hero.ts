@@ -63,7 +63,7 @@ import * as $ from 'jquery';
         .dropdown.profile .dropdown-menu .profile-info .username { font-size: 1.8em; }
         .dropdown.profile > a { font-family: 'Roboto Condensed', sans-serif; height: 60px; line-height: 60px; padding: 0px 20px 0px 20px; color: white; text-decoration: none; }
         .dropdown.profile > a:hover { text-decoration: none; color: #ddd}
-        .dropdown.profile.open > a { background-color: transparent; }
+        .dropdown.profile.open > a { background-color: #575F68; }
         .modal-dialog { color: #444; }
     `]
 })

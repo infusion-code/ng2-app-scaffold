@@ -32,7 +32,16 @@ export class NotificationsService {
             this._messages.splice(0, this._messages.length);
         }
         for (let i = 0; i < 5; i++) {
-            let m: Message = new Message("Some Message", new Date());
+            let m: Message;
+            if(i!=2) m = new Message("Some Message", new Date());
+            else{
+                m = new Message(
+                    "Some Message", 
+                    new Date(), 
+                    "This is a new message. Read it or not", 
+                    "http://hdwplan.com/wp-content/uploads/2016/07/most-download-cool-image.jpg",
+                    "/home");
+            }
             this._messages.push(m);
         }
 

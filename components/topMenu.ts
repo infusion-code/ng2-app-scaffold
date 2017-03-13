@@ -26,8 +26,8 @@
             </div>
         </nav>
     `,
-    styles: [
-        `.navbar { z-index: 10001; padding-left: 60px; -webkit-transition: all 0.25s; transition: all 0.25s; }
+    styles: [`
+        .navbar { z-index: 10001; padding-left: 60px; -webkit-transition: all 0.25s; transition: all 0.25s; }
         .navbar.navbar-fixed-top { border-bottom: 1px solid black; }
         .navbar > .container, .navbar > .container-fluid { z-index: 10001; }
         .navbar > .container .navbar-expand-toggle, .navbar > .container-fluid .navbar-expand-toggle { width: 60px; height: 60px; background-color: transparent; border: 0px; float: left; -moz-transition: all 0.25s linear; -webkit-transition: all 0.25s linear; transition: all 0.25s linear; opacity: 0.75; }
