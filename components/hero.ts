@@ -86,6 +86,10 @@ export class HeroComponent implements OnInit {
         let that: HeroComponent = this;
         if (!this.SupportsLogout) return;
 
+        // relocate the model dialog content below the body tag to prevent z-index issues 
+        // with bootstrap
+        $('#logoutModal').appendTo("body")
+
         this._heroService.Logout().then(s => {
             that._logoutConfirmation = s;
         });
@@ -110,11 +114,6 @@ export class HeroComponent implements OnInit {
         this._heroService.Hero.then(h => {
             that._hero = h;
         });
-
-        // relocate the model dialog content below the body tag to prevent z-index issues 
-        // with bootstrap
-        $('#logoutModal').appendTo("body")
-
     }
 
 }
