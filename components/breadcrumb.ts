@@ -9,14 +9,14 @@ import 'rxjs/add/operator/filter';
     template: `
         <ol class="breadcrumb navbar-breadcrumb">
             <li *ngFor="let node of Nodes; let last = last">
-                <a *ngIf="node.Url" [routerLink]="node.Url" id={{node.Id}}>{{node.Title}}</a>
-                <span *ngIf="(node.Url == null || node.Url == '')" id={{node.Id}}>{{node.Title}}</span>
+                <a *ngIf="node.Url" [routerLink]="node.Url" id={{node.Id}} title={{node.Title}}>{{node.Title}}</a>
+                <span *ngIf="(node.Url == null || node.Url == '')" id={{node.Id}} title={{node.Title}}>{{node.Title}}</span>
             </li>
         </ol>`,
     styles: [`
         :host { float: left }
         * { color: white !Important ;}
-        .breadcrumb.navbar-breadcrumb { margin-bottom: 0px; }
+        .breadcrumb.navbar-breadcrumb { margin-bottom: 0px; max-width: 100px; whitespace: nowrap; }
         .navbar-breadcrumb { margin-left: 0px; background-color: transparent; padding: 0px; }
         .navbar-breadcrumb > li { height: 60px; line-height: 60px; vertical-align: middle; font-family: 'Roboto Condensed', sans-serif; font-size: 1.5em; }
     `]

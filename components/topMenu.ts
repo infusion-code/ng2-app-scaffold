@@ -12,7 +12,7 @@
                     <span *ngIf="!ShowLeftNavToggle" class="navbar-spacer">&nbsp;</span>
                     <breadcrumb></breadcrumb>
                     <button *ngIf="ShowSubscriptions || ShowHero || ShowNotifications" type="button" class="navbar-right-expand-toggle pull-right visible-xs" (click)="ToggleTopMenu()">
-                        <i class="fa fa-th icon"></i>
+                        <div><i class="fa fa-th icon"></i></div>
                     </button>
                 </div>
                 <ul *ngIf="ShowSubscriptions || ShowHero || ShowNotifications" [ngClass]="{'expanded' : _topMenuToggled}"  class="nav navbar-nav navbar-right">
@@ -29,10 +29,12 @@
     styles: [`
         .navbar { z-index: 10001; padding-left: 60px; -webkit-transition: all 0.25s; transition: all 0.25s; }
         .navbar.navbar-fixed-top { border-bottom: 1px solid black; }
+        .navbar > .navbar-right { background-color: #000;}
         .navbar > .container, .navbar > .container-fluid { z-index: 10001; }
-        .navbar > .container .navbar-expand-toggle, .navbar > .container-fluid .navbar-expand-toggle { width: 60px; height: 60px; background-color: transparent; border: 0px; float: left; -moz-transition: all 0.25s linear; -webkit-transition: all 0.25s linear; transition: all 0.25s linear; opacity: 0.75; }
+        .navbar > .container .navbar-expand-toggle, .navbar > .container-fluid .navbar-expand-toggle { width: 60px; height: 60px; background-color: transparent; border: 0px; float: left; -moz-transition: all 0.25s linear; -webkit-transition: all 0.25s linear; transition: all 0.25s linear; opacity: 0.75;}
         .navbar > .container .navbar-expand-toggle .icon, .navbar > .container-fluid .navbar-expand-toggle .icon { font-size: 1.4em; }
-        .navbar > .container .navbar-right-expand-toggle, .navbar > .container-fluid .navbar-right-expand-toggle { width: 60px; height: 60px; background-color: transparent; border: 0px; position: absolute; right: 0; -moz-transition: all 0.25s linear; -webkit-transition: all 0.25s linear; transition: all 0.25s linear; opacity: 0.75; color: #fff; }
+        .navbar > .container .navbar-right-expand-toggle, .navbar > .container-fluid .navbar-right-expand-toggle { width: 60px; height: 60px; background-color: #000; border: 0px; position: absolute; right: 0; -moz-transition: all 0.25s linear; -webkit-transition: all 0.25s linear; transition: all 0.25s linear;  color: #fff; }
+        .navbar > .container .navbar-right-expand-toggle > div, .navbar > .container-fluid .navbar-right-expand-toggle > div { opacity: 0.75}
         .navbar > .container .navbar-right-expand-toggle .icon, .navbar > .container-fluid .navbar-right-expand-toggle .icon { font-size: 1.4em; }
         .navbar .navbar-nav /deep/ .dropdown-menu, .navbar.navbar-default .navbar-nav /deep/ .dropdown-menu { background-color: #F9F9F9; border-color: #E4E4E4 }
         :host-context(.app-container.expanded .content-container) .navbar-top { padding-left: 250px; }

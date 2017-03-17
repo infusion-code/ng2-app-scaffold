@@ -8,7 +8,7 @@
                 <div class="side-menu-container">
                     <div class="navbar-header">
                         <a class="navbar-brand" routerLink="/">
-                            <div class="icon fa {{HomeIcon}}"></div>
+                            <div class="icon fa {{HomeIcon}} {{HomeLabel.length > 25 ? 'multiline' : ''}}"></div>
                             <div class="title {{HomeLabel.length > 25 ? 'multiline' : ''}}">{{HomeLabel}}</div>
                         </a>
                     </div>
@@ -31,8 +31,9 @@
         .side-menu /deep/ .navbar-nav li { display: block; width: 100%; overflow: hidden; }
         .side-menu /deep/ .navbar-nav li a { font-family: 'Roboto Condensed', sans-serif; padding: 0 10px 0 10px; height: 46px; line-height: 46px; display: block; white-space: nowrap; }
         .side-menu /deep/ .navbar-nav li a .icon { margin-left: 0px; width: 38px; text-align: center; font-size: 1.1em; display: inline-block; }
+        .side-menu /deep/ .navbar-nav li a .icon.multiline { vertical-align: top; margin-top: 15px; }
         .side-menu /deep/ .navbar-nav li a .title { width: 0px; white-space: nowrap; padding-left: 6px; display: none; }
-        .side-menu /deep/ .navbar-nav li a .title.multiline {line-height: 14pt; padding-bottom: 13px; padding-top: 13px; }
+        .side-menu /deep/ .navbar-nav li a .title.multiline {line-height: 14pt; padding-bottom: 13px; padding-top: 13px; width: 192px; white-space: normal; }
         .side-menu /deep/ .navbar-nav li.dropdown { border: 0; margin-bottom: 0; border-radius: 0; box-shadow: none; background-color: transparent; }
         .side-menu /deep/ .navbar-nav li.dropdown ul li a { height: 44px;line-height: 44px; vertical-align: middle; padding: 0em 1.2em; }
         .side-menu /deep/ .navbar-nav li.dropdown > a:after { content: ""; position: absolute; right: 1em; }
