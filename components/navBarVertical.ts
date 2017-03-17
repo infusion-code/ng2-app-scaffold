@@ -30,11 +30,11 @@ import { NavNode } from '../models/navNode';
     `,
     styles: [`
         :host .nav.navbar-nav > li > a:hover { color: #22A7F0; }
-        :host .nav.navbar-nav ul  li.multiline { padding-bottom: 60px; }
-        :host .nav.navbar-nav ul  li > a { height: auto; }
-        :host .nav.navbar-nav ul  li > a > span.icon.fa { float: left; display: block; height: 14px; padding-top: 15px; }
-        :host .nav.navbar-nav ul  li > a > span.icon.fa.multiline { vertical-align: top; margin-top: 15px;  }
-        :host .nav.navbar-nav ul  li > a > span.title { white-space: normal; padding-left: 38px; display: block; box-sizing: border-box; width: 100%; }
+        :host .nav.navbar-nav li.multiline > a { padding-bottom: 60px; }
+        :host .nav.navbar-nav li > a { height: auto; }
+        :host .nav.navbar-nav li > a > span.icon.fa { float: left; display: block; height: 14px; }
+        :host .nav.navbar-nav li > a > span.icon.fa.multiline { vertical-align: top; margin-top: 15px;  }
+        :host .nav.navbar-nav li > a > span.title { white-space: normal; padding-left: 38px; display: block; box-sizing: border-box; width: 100%; }
     `]
 })
 export class VerticalNavBar implements OnInit {
