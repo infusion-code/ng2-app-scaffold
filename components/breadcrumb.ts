@@ -16,7 +16,7 @@ import 'rxjs/add/operator/filter';
     styles: [`
         :host { float: left }
         * { color: white !Important ;}
-        .breadcrumb.navbar-breadcrumb { margin-bottom: 0px; max-width: 100px; whitespace: nowrap; }
+        .breadcrumb.navbar-breadcrumb { margin-bottom: 0px; max-width: 100px; white-space: nowrap; }
         .navbar-breadcrumb { margin-left: 0px; background-color: transparent; padding: 0px; }
         .navbar-breadcrumb > li { height: 60px; line-height: 60px; vertical-align: middle; font-family: 'Roboto Condensed', sans-serif; font-size: 1.5em; }
     `]
