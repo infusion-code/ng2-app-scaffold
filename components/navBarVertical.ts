@@ -30,7 +30,7 @@ import { NavNode } from '../models/navNode';
     `,
     styles: [`
         :host .nav.navbar-nav > li > a:hover { color: #22A7F0; }
-        :host .nav.navbar-nav li.multiline > a { padding-bottom: 60px; }
+        :host .nav.navbar-nav li.multiline > a { }
         :host .nav.navbar-nav li > a { height: auto; }
         :host .nav.navbar-nav li > a > span.icon.fa { float: left; display: block; height: 14px; }
         :host .nav.navbar-nav li > a > span.icon.fa.multiline { vertical-align: top; margin-top: 15px;  }
