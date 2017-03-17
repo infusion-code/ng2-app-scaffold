@@ -32,9 +32,9 @@ import { NavNode } from '../models/navNode';
         :host .nav.navbar-nav > li > a:hover { color: #22A7F0; }
         :host .nav.navbar-nav li.multiline > a { }
         :host .nav.navbar-nav li > a { height: auto; }
-        :host .nav.navbar-nav li > a > span.icon.fa { float: left; display: block; height: 14px; }
+        :host .nav.navbar-nav li > a > span.icon.fa { height: 14px; }
         :host .nav.navbar-nav li > a > span.icon.fa.multiline { vertical-align: top; margin-top: 15px;  }
-        :host .nav.navbar-nav li > a > span.title { white-space: normal; padding-left: 38px; display: block; box-sizing: border-box; width: 100%; }
+        :host .nav.navbar-nav li > a > span.title { white-space: normal; box-sizing: border-box; width: 192px;  }
     `]
 })
 export class VerticalNavBar implements OnInit {
