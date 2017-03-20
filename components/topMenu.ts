@@ -88,6 +88,10 @@ export class GlobalNav {
         public get ShowSubscriptions(): boolean { return this._showSubscriptions; }
         public set ShowSubscriptions(val: boolean) { this._showSubscriptions = val; }
 
+    @Input()
+        public get ExpandCurrentNavOnLoad(): boolean { return this._sideMenuToggled; }
+        public set ExpandCurrentNavOnLoad(val: boolean) { this._sideMenuToggled = val; }
+
     @Output()
         public SideMenuToggled: EventEmitter<boolean> = new EventEmitter<boolean>();
 
