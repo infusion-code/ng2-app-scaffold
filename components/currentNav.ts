@@ -60,7 +60,7 @@
         :host-context(.app-container.expanded .content-container) .side-menu /deep/ .navbar-nav li.dropdown > a:after { font-family: FontAwesome; content: "\\f107"; position: absolute; right: 1em; }
         @media (max-width: 768px) {
           .navbar { padding-left: 0; }
-          .navbar .navbar-header { width: auto; display: block; }
+          .navbar .navbar-header { display: block; }
           .navbar /deep/ .navbar-nav { width: auto; margin: 0; }
           .navbar /deep/ .navbar-nav li { display: inline-block; }
           .navbar .navbar-right { position: absolute;top: 0;right: -100%;height: 100%;width: 100%;-moz-transition: all 0.25s linear;-webkit-transition: all 0.25s linear; transition: all 0.25s linear; }

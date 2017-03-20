@@ -45,8 +45,9 @@
           .navbar .navbar-nav { width: auto; margin: 0; }
           .navbar .navbar-nav > li { display: inline-block; }
           .navbar .navbar-right { position: absolute;top: 0;right: -100%;height: 100%;width: 100%;-moz-transition: all 0.25s linear;-webkit-transition: all 0.25s linear; transition: all 0.25s linear; float: right!important; }
-          .navbar .navbar-right /deep/ .open .dropdown-menu { position: absolute; box-shadow: 0 6px 12px rgba(0, 0, 0, .175); -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175); }
+          .navbar .navbar-right /deep/ .open .dropdown-menu { position: absolute; box-shadow: 0 6px 12px rgba(0, 0, 0, .175); -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175); left: 0!Important; }
           .navbar .navbar-right.expanded { right: 0; }
+          .visible-xs { display: block!important; }
           :host-context(.app-container) .navbar-top { min-width: 300px; }
           :host-context(.app-container.expanded) .navbar-top { min-width: 480px; padding-left: 0px; }
         }`,
@@ -61,7 +62,8 @@
         .navbar .navbar-nav > li, .navbar.navbar-default .navbar-nav > li { border-color: black; }
         .navbar.navbar-default .navbar-breadcrumb li, .navbar.navbar-default .navbar-breadcrumb li a, .navbar.navbar-default .navbar-header .navbar-expand-toggle, .navbar.navbar-default .navbar-header .navbar-right-expand-toggle, .navbar .navbar-header .navbar-expand-toggle, .navbar .navbar-header .navbar-right-expand-toggle { color: white !important; }
         .navbar.navbar-top .navbar-spacer { float: left; width: 25px; }
-        @media (max-width: 768px) { .navbar.navbar-default .navbar-right { background-color: black !important; } }`
+        @media (max-width: 768px) { .navbar.navbar-default .navbar-right { background-color: black !important; }  }
+        `
     ]
 })
 export class GlobalNav {
