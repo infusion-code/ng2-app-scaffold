@@ -90,7 +90,10 @@ export class GlobalNav {
 
     @Input()
         public get ExpandCurrentNavOnLoad(): boolean { return this._sideMenuToggled; }
-        public set ExpandCurrentNavOnLoad(val: boolean) { this._sideMenuToggled = val; }
+        public set ExpandCurrentNavOnLoad(val: boolean) { 
+            this._sideMenuToggled = val; 
+            this.SideMenuToggled.emit(this._sideMenuToggled); 
+        }
 
     @Output()
         public SideMenuToggled: EventEmitter<boolean> = new EventEmitter<boolean>();
