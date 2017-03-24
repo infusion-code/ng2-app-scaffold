@@ -2,7 +2,7 @@
 
 @Injectable()
 export class ConfigService {
-
+    protected _storageKey: string;
     protected _expandCurrentNavOnLoad: boolean;
     protected _showLeftNavToggle: boolean;
     protected _showSubscriptions: boolean;
@@ -26,7 +26,7 @@ export class ConfigService {
     public get Version(): string { return this._version; }
     public get ReleaseNotes(): string { return this._releaseNotes; }
     public get UseGlobalCss(): boolean { return this._useGlobalCss; }
-
+    public get StorageKey(): string { return this._storageKey; }
 
     constructor() {
         this._title = "App Title";
@@ -39,6 +39,12 @@ export class ConfigService {
         this._useGlobalCss = true;
         this._copyright = "Copyright © 2010-2017, Infusion.";
         this._version = "0.0.1";
-        this._releaseNotes = "";
+        this._releaseNotes = ""; 
+        this._storageKey = "appStorage";
     }
+}
+
+export function Guid() {
+  function s4() { return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1); }
+  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +  s4() + '-' + s4() + s4() + s4();
 }

@@ -11,6 +11,9 @@ import { Hero } from './models/hero';
 import { Message } from './models/message';
 import { Subscription } from './models/subscription';
 
+// decorator imports
+import { SessionStorage, LocalStorage } from './decorators/storage';
+
 // component imports
 import { Breadcrumb } from './components/breadcrumb';
 import { HeroComponent } from './components/hero';
@@ -29,16 +32,17 @@ import { HeroService } from './services/hero';
 import { NotificationsService } from './services/notifications';
 import { SubscriptionService } from './services/subscriptions';
 import { CurrentNavProvider } from './services/currentNavProvider';
-import { ConfigService } from './services/configService';
+import { ConfigService, Guid } from './services/configService';
+import { LocalStorageService, SessionStorageService } from './services/storageService';
 
 // global exports
-export { NavNode, Hero, Message, Subscription, AppComponent, Breadcrumb, CurrentNav, GlobalNav, Footer, HeroComponent, NotificationBadge, SubscriptionBadge, BreadcrumbService, HeroService, NotificationsService, SubscriptionService, CurrentNavProvider, ConfigService } 
+export { NavNode, Hero, Message, Subscription, AppComponent, Breadcrumb, CurrentNav, GlobalNav, Footer, HeroComponent, NotificationBadge, SubscriptionBadge, BreadcrumbService, HeroService, NotificationsService, SubscriptionService, CurrentNavProvider, ConfigService, SessionStorage, LocalStorage, SessionStorageService, LocalStorageService, Guid } 
 
 // module definition
 @NgModule({
     imports: [CommonModule, RouterModule ],
-    declarations: [AppComponent, GlobalCss, Breadcrumb, CurrentNav, GlobalNav, Footer, HeroComponent, NotificationBadge, SubscriptionBadge, VerticalNavBar],
-    exports: [AppComponent, Breadcrumb, CurrentNav, GlobalNav, Footer, HeroComponent, NotificationBadge, SubscriptionBadge, CommonModule, RouterModule],
+    declarations: [AppComponent, GlobalCss, Breadcrumb, CurrentNav, GlobalNav, Footer, HeroComponent, NotificationBadge, SubscriptionBadge, VerticalNavBar ],
+    exports: [AppComponent, Breadcrumb, CurrentNav, GlobalNav, Footer, HeroComponent, NotificationBadge, SubscriptionBadge, CommonModule, RouterModule ],
     providers: [BreadcrumbService, HeroService, NotificationsService, SubscriptionService, CurrentNavProvider, ConfigService]
 })
 export class AppScaffoldModule {
