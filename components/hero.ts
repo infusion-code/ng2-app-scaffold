@@ -12,10 +12,10 @@ import * as $ from 'jquery';
         <li class="dropdown profile">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span *ngIf="Hero">{{Hero.Name}}</span> <span class="caret"></span></a>
             <ul class="dropdown-menu animated fadeInDown">
-                <li class="profile-img" *ngIf="Hero">
+                <li *ngIf="_delegateMarkup == '' || _delegateMarkup == null" class="profile-img" *ngIf="Hero">
                     <img src="{{Hero.Picture}}" class="profile-img">
                 </li>
-                <li>
+                <li *ngIf="_delegateMarkup == '' || _delegateMarkup == null">
                     <div class="profile-info">
                         <h4 class="username" *ngIf="Hero">{{Hero.Name}}</h4>
                         <p><span *ngIf="Hero">{{Hero.Email}}</span></p>
@@ -25,10 +25,13 @@ import * as $ from 'jquery';
                         </div>
                     </div>
                 </li>
+                <ng-container *ngIf="_delegateMarkup != '' && _delegateMarkup != null">
+                    <delegate-control template="_delegateMarkup"></delegate-control>
+                </ng-container>
             </ul>
         </li>
         <div class="modal fade" id="logoutModal" role="dialog">
-            <div *ngIf="_delegateMarkup == '' || _delegateMarkup == null" class="modal-dialog">
+            <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -42,9 +45,6 @@ import * as $ from 'jquery';
                 </div>
               </div>
             </div>
-            <ng-container *ngIf="_delegateMarkup != '' && _delegateMarkup != null">
-                <delegate-control template="_delegateMarkup"></delegate-control>
-            </ng-container>
         </div>
         `,
     styles: [`
