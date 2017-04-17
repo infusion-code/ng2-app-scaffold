@@ -12,7 +12,7 @@ import * as $ from 'jquery';
         <li class="dropdown profile">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span *ngIf="Hero">{{Hero.Name}}</span> <span class="caret"></span></a>
             <ul class="dropdown-menu animated fadeInDown">
-                <li *ngIf="_delegateMarkup == '' || _delegateMarkup == null" class="profile-img" *ngIf="Hero">
+                <li *ngIf="(_delegateMarkup == '' || _delegateMarkup == null) && Hero" class="profile-img">
                     <img src="{{Hero.Picture}}" class="profile-img">
                 </li>
                 <li *ngIf="_delegateMarkup == '' || _delegateMarkup == null">
