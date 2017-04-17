@@ -26,7 +26,7 @@ import * as $ from 'jquery';
                     </div>
                 </li>
                 <ng-container *ngIf="_delegateMarkup != '' && _delegateMarkup != null">
-                    <delegate-control template="_delegateMarkup"></delegate-control>
+                    <delegate-control [template]="_delegateMarkup"></delegate-control>
                 </ng-container>
             </ul>
         </li>
