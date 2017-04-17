@@ -14,6 +14,9 @@ import { Subscription } from './models/subscription';
 // decorator imports
 import { SessionStorage, LocalStorage } from './decorators/storage';
 
+// directive imports
+import { DelegateControl } from './directives/delegate';
+
 // component imports
 import { Breadcrumb } from './components/breadcrumb';
 import { HeroComponent } from './components/hero';
@@ -34,20 +37,21 @@ import { SubscriptionService } from './services/subscriptions';
 import { CurrentNavProvider } from './services/currentNavProvider';
 import { ConfigService, Guid } from './services/configService';
 import { LocalStorageService, SessionStorageService } from './services/storageService';
+import { DelegateService } from './services/delegateService';
 
 // global exports
-export { NavNode, Hero, Message, Subscription, AppComponent, Breadcrumb, CurrentNav, GlobalNav, Footer, HeroComponent, NotificationBadge, SubscriptionBadge, BreadcrumbService, HeroService, NotificationsService, SubscriptionService, CurrentNavProvider, ConfigService, SessionStorage, LocalStorage, SessionStorageService, LocalStorageService, Guid } 
+export { NavNode, Hero, Message, Subscription, DelegateControl, AppComponent, Breadcrumb, CurrentNav, GlobalNav, Footer, HeroComponent, NotificationBadge, SubscriptionBadge, BreadcrumbService, HeroService, NotificationsService, SubscriptionService, CurrentNavProvider, ConfigService, DelegateService, SessionStorage, LocalStorage, SessionStorageService, LocalStorageService, Guid } 
 
 // module definition
 @NgModule({
     imports: [CommonModule, RouterModule ],
-    declarations: [AppComponent, GlobalCss, Breadcrumb, CurrentNav, GlobalNav, Footer, HeroComponent, NotificationBadge, SubscriptionBadge, VerticalNavBar ],
-    exports: [AppComponent, Breadcrumb, CurrentNav, GlobalNav, Footer, HeroComponent, NotificationBadge, SubscriptionBadge, CommonModule, RouterModule ],
-    providers: [BreadcrumbService, HeroService, NotificationsService, SubscriptionService, CurrentNavProvider, ConfigService]
+    declarations: [AppComponent, GlobalCss, Breadcrumb, CurrentNav, GlobalNav, Footer, HeroComponent, NotificationBadge, SubscriptionBadge, VerticalNavBar, DelegateControl ],
+    exports: [AppComponent, Breadcrumb, CurrentNav, GlobalNav, Footer, HeroComponent, NotificationBadge, SubscriptionBadge, CommonModule, RouterModule, DelegateControl ],
+    providers: [BreadcrumbService, HeroService, NotificationsService, SubscriptionService, CurrentNavProvider, ConfigService, DelegateService ]
 })
 export class AppScaffoldModule {
 
-    static forRoot(breadcrumb: BreadcrumbService, hero: HeroService, notification: NotificationsService, subscriptions: SubscriptionService, currentNavProvider: CurrentNavProvider, configService: ConfigService): ModuleWithProviders {
+    static forRoot(breadcrumb: BreadcrumbService, hero: HeroService, notification: NotificationsService, subscriptions: SubscriptionService, currentNavProvider: CurrentNavProvider, configService: ConfigService, delegateService: DelegateService): ModuleWithProviders {
         return {
             ngModule: AppScaffoldModule,
             providers: [
@@ -56,7 +60,8 @@ export class AppScaffoldModule {
                 { provide: NotificationsService, useValue: notification },
                 { provide: SubscriptionService, useValue: subscriptions },
                 { provide: CurrentNavProvider, useValue: currentNavProvider },
-                { provide: ConfigService, useValue: configService }
+                { provide: ConfigService, useValue: configService },
+                { provide: DelegateService, useValue: delegateService }
             ]
         };
     }

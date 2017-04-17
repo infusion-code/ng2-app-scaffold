@@ -1,6 +1,8 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HeroService } from '../services/hero';
+import { DelegateService } from '../services/delegateService';
+import { DelegateControl } from '../directives/delegate'
 import { Hero } from '../models/hero';
 import * as $ from 'jquery';
 
@@ -26,7 +28,7 @@ import * as $ from 'jquery';
             </ul>
         </li>
         <div class="modal fade" id="logoutModal" role="dialog">
-            <div class="modal-dialog">
+            <div *ngIf="_delegateMarkup == '' || _delegateMarkup == null" class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -39,9 +41,11 @@ import * as $ from 'jquery';
                   <button type="button" class="btn btn-default" data-dismiss="modal" (click)="PostLogoutRedirect()">Close</button>
                 </div>
               </div>
-      
             </div>
-          </div>
+            <ng-container *ngIf="_delegateMarkup != '' && _delegateMarkup != null">
+                <delegate-control template="_delegateMarkup"></delegate-control>
+            </ng-container>
+        </div>
         `,
     styles: [`
         :host { float: left; }
@@ -72,14 +76,16 @@ export class HeroComponent implements OnInit {
     private _logoutConfirmation: string;
     private _router: Router;
     private _hero: Hero;
+    private _delegateMarkup: string;
 
     public get Hero(): Hero { return this._hero; }
     public get SupportsLogout(): boolean { return this._heroService.SupportsLogout; }
     public get LogoutConfirmation(): string { return this._logoutConfirmation; }
 
-    constructor(heroService: HeroService, router: Router) {
+    constructor(heroService: HeroService, router: Router, delegates: DelegateService) {
         this._heroService = heroService;
         this._router = router;
+        this._delegateMarkup = delegates.GetDelegate("topnavhero.detail");
     }
 
     private Logout() {
