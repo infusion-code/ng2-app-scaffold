@@ -1,12 +1,14 @@
-import { Component, Directive, NgModule, Input, ViewContainerRef, Compiler, ComponentFactory, ModuleWithComponentFactories, ComponentRef, ReflectiveInjector, OnDestroy} from '@angular/core';
-import { RouterModule }  from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { Component, Directive, NgModule, Input, ViewContainerRef, Compiler, ComponentFactory, ModuleWithComponentFactories, ComponentRef, ReflectiveInjector, OnDestroy, Type} from '@angular/core';
+import { DelegateService, DelegateControlMetadata } from '../services/delegateService';
 
-export function createComponentFactory(compiler: Compiler, metadata: Component): Promise<ComponentFactory<any>> {
+export function createComponentFactory(compiler: Compiler, metadata: Component, imports: Array<Type<any> | any[]>): Promise<ComponentFactory<any>> {
     const componentClass = class DynamicComponent {};
     const decoratedComponent = Component(metadata)(componentClass);
 
-    @NgModule({ imports: [CommonModule, RouterModule], declarations: [decoratedComponent] })
+    @NgModule({ 
+      imports: imports, 
+      declarations: [decoratedComponent] 
+    })
     class DynamicHtmlModule { }
 
     return compiler.compileModuleAndAllComponentsAsync(DynamicHtmlModule)
@@ -19,24 +21,24 @@ export function createComponentFactory(compiler: Compiler, metadata: Component):
   selector: 'delegate-control' 
 })
 export class DelegateControl implements OnDestroy {
-  @Input() template: string;
+  @Input() id: string;
   componentReference: ComponentRef<any>;
 
-  constructor(private viewContainer: ViewContainerRef, private compiler: Compiler) { }
+  constructor(private viewContainer: ViewContainerRef, private compiler: Compiler, private delegates: DelegateService) { }
 
   ngOnChanges() {
-    const html = this.template;
-    if (!html) return;
-    if(this.componentReference) {
-      this.componentReference.destroy();
-    }
+    if (!this.id) return;
+
+    let d:DelegateControlMetadata = this.delegates.GetDelegate(this.id);
+    if (!d) return;
+    if (this.componentReference)  this.componentReference.destroy();
 
     const compMetadata = new Component({
-        selector: 'dynamic-html',
-        template: this.template,
+        selector: d.selector,
+        template: d.template
     });
 
-    createComponentFactory(this.compiler, compMetadata)
+    createComponentFactory(this.compiler, compMetadata, d.imports)
       .then(factory => {
         const injector = ReflectiveInjector.fromResolvedProviders([], this.viewContainer.parentInjector);   
         this.componentReference = this.viewContainer.createComponent(factory, 0, injector, []);

@@ -12,10 +12,10 @@ import * as $ from 'jquery';
         <li class="dropdown profile">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span *ngIf="Hero">{{Hero.Name}}</span> <span class="caret"></span></a>
             <ul class="dropdown-menu animated fadeInDown">
-                <li *ngIf="(_delegateMarkup == '' || _delegateMarkup == null) && Hero" class="profile-img">
+                <li *ngIf="!_hasDelegate && Hero" class="profile-img">
                     <img src="{{Hero.Picture}}" class="profile-img">
                 </li>
-                <li *ngIf="_delegateMarkup == '' || _delegateMarkup == null">
+                <li *ngIf="!_hasDelegate">
                     <div class="profile-info">
                         <h4 class="username" *ngIf="Hero">{{Hero.Name}}</h4>
                         <p><span *ngIf="Hero">{{Hero.Email}}</span></p>
@@ -25,8 +25,8 @@ import * as $ from 'jquery';
                         </div>
                     </div>
                 </li>
-                <ng-container *ngIf="_delegateMarkup != '' && _delegateMarkup != null">
-                    <delegate-control [template]="_delegateMarkup"></delegate-control>
+                <ng-container *ngIf="_hasDelegate">
+                    <delegate-control [id]="_delegateId"></delegate-control>
                 </ng-container>
             </ul>
         </li>
@@ -76,7 +76,8 @@ export class HeroComponent implements OnInit {
     private _logoutConfirmation: string;
     private _router: Router;
     private _hero: Hero;
-    private _delegateMarkup: string;
+    private _hasDelegate: boolean = false;
+    private _delegateId: string = "topnavhero.detail";
 
     public get Hero(): Hero { return this._hero; }
     public get SupportsLogout(): boolean { return this._heroService.SupportsLogout; }
@@ -85,7 +86,7 @@ export class HeroComponent implements OnInit {
     constructor(heroService: HeroService, router: Router, delegates: DelegateService) {
         this._heroService = heroService;
         this._router = router;
-        this._delegateMarkup = delegates.GetDelegate("topnavhero.detail");
+        if(delegates.GetDelegate(this._delegateId)) this._hasDelegate = true;
     }
 
     private Logout() {
