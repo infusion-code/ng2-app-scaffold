@@ -26,7 +26,7 @@ export class StorageService {
         let val = this._storage.getItem(this._prefix);
         if (val == null || val == "") return;
         let o = JSON.parse(val);
-        o.delete(key);
+        if(o[key]) delete o[key];
         this._storage.set(this._prefix, JSON.stringify(o));
     }
 
