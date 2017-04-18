@@ -25,7 +25,7 @@ Add the AppComponent as the bootstrap for your ng2 module and import the AppScaf
         ],
         imports: [
             UniversalModule,
-            AppScaffoldModule,
+            AppScaffoldModule.forRoot(),
             RouterModule.forRoot([
                 ...
             ])
