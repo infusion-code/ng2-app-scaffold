@@ -35,7 +35,8 @@ export class DelegateControl implements OnDestroy {
 
     const compMetadata = new Component({
         selector: d.selector,
-        template: d.template
+        template: d.template,
+        styles: d.styles
     });
 
     createComponentFactory(this.compiler, compMetadata, d.imports)

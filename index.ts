@@ -47,21 +47,20 @@ export { NavNode, Hero, Message, Subscription, DelegateControl, DelegateControlM
     imports: [CommonModule, RouterModule ],
     declarations: [AppComponent, GlobalCss, Breadcrumb, CurrentNav, GlobalNav, Footer, HeroComponent, NotificationBadge, SubscriptionBadge, VerticalNavBar, DelegateControl ],
     exports: [AppComponent, Breadcrumb, CurrentNav, GlobalNav, Footer, HeroComponent, NotificationBadge, SubscriptionBadge, CommonModule, RouterModule, DelegateControl ],
-    providers: [BreadcrumbService, HeroService, NotificationsService, SubscriptionService, CurrentNavProvider, ConfigService, DelegateService ]
 })
 export class AppScaffoldModule {
 
-    static forRoot(breadcrumb: BreadcrumbService, hero: HeroService, notification: NotificationsService, subscriptions: SubscriptionService, currentNavProvider: CurrentNavProvider, configService: ConfigService, delegateService: DelegateService): ModuleWithProviders {
+    static forRoot(breadcrumb?: BreadcrumbService, hero?: HeroService, notification?: NotificationsService, subscriptions?: SubscriptionService, currentNavProvider?: CurrentNavProvider, configService?: ConfigService, delegateService?: DelegateService): ModuleWithProviders {
         return {
             ngModule: AppScaffoldModule,
             providers: [
-                { provide: BreadcrumbService, useValue: breadcrumb },
-                { provide: HeroService, useValue: hero },
-                { provide: NotificationsService, useValue: notification },
-                { provide: SubscriptionService, useValue: subscriptions },
-                { provide: CurrentNavProvider, useValue: currentNavProvider },
-                { provide: ConfigService, useValue: configService },
-                { provide: DelegateService, useValue: delegateService }
+                breadcrumb ? { provide: BreadcrumbService, useValue: breadcrumb } : BreadcrumbService,
+                hero ? { provide: HeroService, useValue: hero } : HeroService,
+                notification ? { provide: NotificationsService, useValue: notification } : NotificationsService,
+                subscriptions ? { provide: SubscriptionService, useValue: subscriptions } : SubscriptionService,
+                currentNavProvider ? { provide: CurrentNavProvider, useValue: currentNavProvider } : CurrentNavProvider,
+                configService ? { provide: ConfigService, useValue: configService } : ConfigService,
+                delegateService ? { provide: DelegateService, useValue: delegateService } : DelegateService
             ]
         };
     }

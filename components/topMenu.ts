@@ -1,4 +1,5 @@
 ﻿import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { DelegateService } from '../services/delegateService';
 
 @Component({
     selector: 'global-nav',
@@ -19,8 +20,13 @@
                     <button *ngIf="ShowSubscriptions || ShowHero || ShowNotifications" type="button" [ngClass]="{'fa-rotate-90': _topMenuToggled}" class="navbar-right-expand-toggle pull-right visible-xs" (click)="ToggleTopMenu()">
                         <i class="fa fa-times icon"></i>
                     </button>
-                    <notificationBadge *ngIf="ShowNotifications"></notificationBadge>
-                    <subscriptionBadge [MoreLink]="'/home'" *ngIf="ShowSubscriptions == true"></subscriptionBadge>
+                    <ng-container *ngIf="!_hasDelegate">
+                        <notificationBadge *ngIf="ShowNotifications"></notificationBadge>
+                        <subscriptionBadge [MoreLink]="'/home'" *ngIf="ShowSubscriptions == true"></subscriptionBadge>
+                    </ng-container>
+                    <ng-container *ngIf="_hasDelegate">
+                        <delegate-control [id]="_delegateId"></delegate-control>
+                    </ng-container>
                     <topnavhero *ngIf="ShowHero == true"></topnavhero>
                 </ul>
             </div>
@@ -73,6 +79,8 @@ export class GlobalNav {
     private _showSubscriptions: boolean = true;
     private _sideMenuToggled: boolean = true;
     private _topMenuToggled: boolean = false;
+    private _hasDelegate: boolean = false;
+    private _delegateId: string = "global-nav.notifications";
 
     @Input()
         public get ShowLeftNavToggle(): boolean { return this._showLeftNavToggle; }
@@ -99,6 +107,10 @@ export class GlobalNav {
 
     @Output()
         public SideMenuToggled: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+    constructor(delegates: DelegateService){
+        if(delegates.GetDelegate(this._delegateId)) this._hasDelegate = true;
+    }
 
     public ToggleSideMenu() {
         this._sideMenuToggled = !this._sideMenuToggled;

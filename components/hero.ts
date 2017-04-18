@@ -2,7 +2,6 @@
 import { Router } from '@angular/router';
 import { HeroService } from '../services/hero';
 import { DelegateService } from '../services/delegateService';
-import { DelegateControl } from '../directives/delegate'
 import { Hero } from '../models/hero';
 import * as $ from 'jquery';
 
