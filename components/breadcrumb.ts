@@ -18,7 +18,9 @@ import 'rxjs/add/operator/filter';
         * { color: white !Important ;}
         .breadcrumb.navbar-breadcrumb { margin-bottom: 0px; max-width: 100px; white-space: nowrap; }
         .navbar-breadcrumb { margin-left: 0px; background-color: transparent; padding: 0px; }
-        .navbar-breadcrumb > li { height: 60px; line-height: 60px; vertical-align: middle; font-family: 'Roboto Condensed', sans-serif; font-size: 1.5em; }
+        .navbar-breadcrumb > li { height: 60px; line-height: 60px; vertical-align: middle; font-family: 'Roboto Condensed', sans-serif; font-size: 1.5em; padding-left: 10px; }
+        .navbar-breadcrumb > li:first-child { padding-left: 0px }
+        .breadcrumb > li + li:before { margin-right: 0px, padding: 0px }
     `]
 })
 export class Breadcrumb {
