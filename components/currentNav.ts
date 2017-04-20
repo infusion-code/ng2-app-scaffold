@@ -49,7 +49,7 @@ import { DelegateService } from '../services/delegateService';
         .side-menu /deep/ .navbar-nav li a .title.multiline {line-height: 14pt; padding-bottom: 13px; padding-top: 13px; width: 192px; white-space: normal; }
         .side-menu /deep/ .navbar-nav li.dropdown { border: 0; margin-bottom: 0; border-radius: 0; box-shadow: none; background-color: transparent; }
         .side-menu /deep/ .navbar-nav li.dropdown ul li a { height: 44px;line-height: 44px; vertical-align: middle; padding: 0em 1.2em; }
-        .side-menu /deep/ .navbar-nav li.dropdown > a:after { content: ""; position: absolute; right: 1em; }
+        .side-menu /deep/ .navbar-nav li.dropdown > a:after { content: "\\f107"; position: absolute; right: 1em; }
         .side-menu /deep/ .navbar-nav .panel-collapse.in { display: none; }
         .side-menu:hover { width: 250px; }
         .side-menu:hover .navbar-header .navbar-brand /deep/ .title { display: inline-block; }
@@ -59,10 +59,10 @@ import { DelegateService } from '../services/delegateService';
         .side-menu.sidebar-inverse { background-color: #353d47; box-shadow: 1px 1px 2px rgba(0,0,0,0.08); color: #fff; }
         .side-menu.sidebar-inverse .navbar {  background-color: inherit;  border-bottom: 0px; -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none; }
         .side-menu.sidebar-inverse .navbar /deep/ li { border-left: 0; }
-        .side-menu.sidebar-inverse .navbar /deep/ li > a { color: #fff; }
-        .side-menu.sidebar-inverse .navbar /deep/ li.active > a { color: #353d47; border-left: 3px solid #22A7F0; border-right: 0px solid #22A7F0; background-color: #FFF; }
-        .side-menu.sidebar-inverse .navbar /deep/ li.active > a .icon { margin-left: -3px; }
-        .side-menu.sidebar-inverse .navbar /deep/ li:hover > a { color: #22A7F0; }
+        .side-menu.sidebar-inverse .navbar /deep/ li > a, .side-menu.sidebar-inverse .navbar /deep/ li.dropdown > div > a { color: #fff; }
+        .side-menu.sidebar-inverse .navbar /deep/ li.active > a, .side-menu.sidebar-inverse .navbar /deep/ li.dropdown.active > div > a { color: #353d47; border-left: 3px solid #22A7F0; border-right: 0px solid #22A7F0; background-color: #FFF; }
+        .side-menu.sidebar-inverse .navbar /deep/ li.active > a .icon, .side-menu.sidebar-inverse .navbar /deep/ li.dropdown.active > div > a .icon { margin-left: -3px; }
+        .side-menu.sidebar-inverse .navbar /deep/ li:hover > a, .side-menu.sidebar-inverse .navbar /deep/ li.dropdown:hover > div > a { color: #22A7F0; }
         .side-menu.sidebar-inverse .navbar /deep/ li.dropdown > .panel-collapse { background-color: rgba(0, 0, 0, 0.1); }
         .side-menu.sidebar-inverse .navbar /deep/ li.dropdown .panel-body { padding: 0 7px; }
         .side-menu.sidebar-inverse .navbar-header .navbar-brand { color: #fff; }
