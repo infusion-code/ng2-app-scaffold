@@ -41,7 +41,7 @@ import { NavNode } from '../models/navNode';
         :host .nav.navbar-nav li > a > span.icon.fa, :host .nav.navbar-nav li.dropdown > div > a > span.icon.fa { height: 14px; }
         :host .nav.navbar-nav li > a > span.icon.fa.multiline, :host .nav.navbar-nav li.dropdown > div > a > span.icon.fa.multiline { vertical-align: top; margin-top: 15px;  }
         :host .nav.navbar-nav li > a > span.title, :host .nav.navbar-nav li.dropdown > div > a > span.title { white-space: normal; box-sizing: border-box; width: 192px;  }
-        :host .nav.navbar-nav li.dropdown > div > .expander { position: absolute; padding: 0px; top: 0px; right: 0px; z-index:1 }
+        :host .nav.navbar-nav li.dropdown > div > .expander { position: absolute; padding: 0px; top: 0px; right: 0px; z-index:1; }
         :host .nav.navbar-nav li.dropdown.active > div > .expander { border: none; }
     `]
 })

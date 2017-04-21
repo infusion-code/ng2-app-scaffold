@@ -49,12 +49,14 @@ import { DelegateService } from '../services/delegateService';
         .side-menu /deep/ .navbar-nav li a .title.multiline {line-height: 14pt; padding-bottom: 13px; padding-top: 13px; width: 192px; white-space: normal; }
         .side-menu /deep/ .navbar-nav li.dropdown { border: 0; margin-bottom: 0; border-radius: 0; box-shadow: none; background-color: transparent; }
         .side-menu /deep/ .navbar-nav li.dropdown ul li a { height: 44px;line-height: 44px; vertical-align: middle; padding: 0em 1.2em; }
-        .side-menu /deep/ .navbar-nav li.dropdown > a:after { content: "\\f107"; position: absolute; right: 1em; }
+        .side-menu /deep/ .navbar-nav li.dropdown > a:after { content: ""; position: absolute; right: 1em; }
+        .side-menu /deep/ .navbar-nav li.dropdown > div > .expander { display: none; }
         .side-menu /deep/ .navbar-nav .panel-collapse.in { display: none; }
         .side-menu:hover { width: 250px; }
         .side-menu:hover .navbar-header .navbar-brand /deep/ .title { display: inline-block; }
         .side-menu:hover /deep/ .navbar-nav li a .title { width: 192px; display: inline-block; }
         .side-menu:hover /deep/ .navbar-nav li.dropdown > a:after { font-family: FontAwesome; content: "\\f107"; position: absolute; right: 1em; }
+        .side-menu:hover /deep/ .navbar-nav li.dropdown > div > .expander { display: block }
         .side-menu:hover /deep/ .panel-collapse.in { display: block; }
         .side-menu.sidebar-inverse { background-color: #353d47; box-shadow: 1px 1px 2px rgba(0,0,0,0.08); color: #fff; }
         .side-menu.sidebar-inverse .navbar {  background-color: inherit;  border-bottom: 0px; -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none; }
@@ -71,6 +73,7 @@ import { DelegateService } from '../services/delegateService';
         :host-context(.app-container.expanded .content-container) .side-menu /deep/ .navbar-nav li a .title { display: inline-block; }
         :host-context(.app-container.expanded .content-container) .side-menu /deep/ .navbar-nav li .panel-collapse.in { display: block; }
         :host-context(.app-container.expanded .content-container) .side-menu /deep/ .navbar-nav li.dropdown > a:after { font-family: FontAwesome; content: "\\f107"; position: absolute; right: 1em; }
+        :host-context(.app-container.expanded .content-container) .side-menu /deep/ .navbar-nav li.dropdown > div > .expander { display: block }
         @media (max-width: 768px) {
           .navbar { padding-left: 0; }
           .navbar .navbar-header { display: block; }
