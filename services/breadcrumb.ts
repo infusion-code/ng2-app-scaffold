@@ -50,11 +50,18 @@ export class BreadcrumbService implements OnDestroy {
                     url += '/' + routeSnapshot.url.map(segment => segment.path).join('/');
                     name = route.snapshot.data["breadcrumb"] ? route.snapshot.data["breadcrumb"] : url.substring(url.lastIndexOf("/")+1);
                     if (routeSnapshot.params != null && routeSnapshot.params["name"] != null) {
-                        this._breadcrumbNodes.push(new NavNode(name, null, this._navNodeIdPrefix + (id++).toString()));
+                        if(route.snapshot.data["hideinbreadcrumb"] !== true && route.snapshot.data["addafterparameternode"] !== true ) { 
+                            this._breadcrumbNodes.push(new NavNode(name, null, this._navNodeIdPrefix + (id++).toString()));
+                        }
                         this._breadcrumbNodes.push(new NavNode(routeSnapshot.params["name"], url, this._navNodeIdPrefix + (id++).toString()));
+                        if(route.snapshot.data["hideinbreadcrumb"] !== true && route.snapshot.data["addafterparameternode"] === true ) { 
+                            this._breadcrumbNodes.push(new NavNode(name, null, this._navNodeIdPrefix + (id++).toString()));
+                        }
                     }
                     else {
-                        this._breadcrumbNodes.push(new NavNode(name, url, this._navNodeIdPrefix + (id++).toString()));
+                        if(route.snapshot.data["hideinbreadcrumb"] !== true) { 
+                            this._breadcrumbNodes.push(new NavNode(name, url, this._navNodeIdPrefix + (id++).toString()));
+                        }
                     }
                     currentRoute = route;
                 }

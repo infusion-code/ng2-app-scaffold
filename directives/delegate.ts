@@ -1,13 +1,14 @@
-import { Component, Directive, NgModule, Input, ViewContainerRef, Compiler, ComponentFactory, ModuleWithComponentFactories, ComponentRef, ReflectiveInjector, OnDestroy, Type} from '@angular/core';
-import { DelegateService, DelegateControlMetadata } from '../services/delegateService';
+import { Component, Directive, NgModule, Input, ViewContainerRef, Compiler, ComponentFactory, ModuleWithComponentFactories, ComponentRef, ReflectiveInjector, OnDestroy, Type, Provider} from '@angular/core';
+import { DelegateService, IDelegateControlMetadata } from '../services/delegateService';
 
-export function createComponentFactory(compiler: Compiler, metadata: Component, imports: Array<Type<any> | any[]>): Promise<ComponentFactory<any>> {
+export function createComponentFactory(compiler: Compiler, metadata: Component, imports: Array<Type<any> | any[]>, providers: Provider[]): Promise<ComponentFactory<any>> {
     const componentClass = class DynamicComponent {};
     const decoratedComponent = Component(metadata)(componentClass);
 
     @NgModule({ 
       imports: imports, 
-      declarations: [decoratedComponent] 
+      declarations: [decoratedComponent],
+      providers: providers 
     })
     class DynamicHtmlModule { }
 
@@ -29,7 +30,7 @@ export class DelegateControl implements OnDestroy {
   ngOnChanges() {
     if (!this.id) return;
 
-    let d:DelegateControlMetadata = this.delegates.GetDelegate(this.id);
+    let d:IDelegateControlMetadata = this.delegates.GetDelegate(this.id);
     if (!d) return;
     if (this.componentReference)  this.componentReference.destroy();
 
@@ -39,7 +40,7 @@ export class DelegateControl implements OnDestroy {
         styles: d.styles
     });
 
-    createComponentFactory(this.compiler, compMetadata, d.imports)
+    createComponentFactory(this.compiler, compMetadata, d.imports, d.providers)
       .then(factory => {
         const injector = ReflectiveInjector.fromResolvedProviders([], this.viewContainer.parentInjector);   
         this.componentReference = this.viewContainer.createComponent(factory, 0, injector, []);

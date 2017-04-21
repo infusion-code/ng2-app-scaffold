@@ -1,18 +1,19 @@
-import { Injectable, Type } from '@angular/core';
+import { Injectable, Type, Provider } from '@angular/core';
 
-export interface DelegateControlMetadata{
-    controlId: string,
-    selector: string,
-    template: string,
-    imports?: Array<Type<any> | any[]>
+export interface IDelegateControlMetadata{
+    controlId: string;
+    selector: string;
+    template: string;
     styles?: string[];
+    imports?: Array<Type<any> | any[]>;
+    providers?: Provider[];
 }
 
 @Injectable()
 export class DelegateService {
-    private static _delegateStore: Array<DelegateControlMetadata> = new Array<DelegateControlMetadata>();
+    private static _delegateStore: Array<IDelegateControlMetadata> = new Array<IDelegateControlMetadata>();
 
-    public RegisterDelegate(data: DelegateControlMetadata): void{
+    public RegisterDelegate(data: IDelegateControlMetadata): void{
         if(!data) return;
 
         let i:number = DelegateService._delegateStore.findIndex( e => e.controlId == data.controlId);
@@ -20,8 +21,8 @@ export class DelegateService {
         DelegateService._delegateStore.push(data);
     }
     
-    public GetDelegate(id: string): DelegateControlMetadata{
-        let d:DelegateControlMetadata = DelegateService._delegateStore.find ( e => e.controlId == id ); 
+    public GetDelegate(id: string): IDelegateControlMetadata{
+        let d:IDelegateControlMetadata = DelegateService._delegateStore.find ( e => e.controlId == id ); 
         return d;
     }
 
