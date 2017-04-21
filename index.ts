@@ -37,10 +37,10 @@ import { SubscriptionService } from './services/subscriptions';
 import { CurrentNavProvider } from './services/currentNavProvider';
 import { ConfigService, Guid } from './services/configService';
 import { LocalStorageService, SessionStorageService } from './services/storageService';
-import { DelegateService, DelegateControlMetadata } from './services/delegateService';
+import { DelegateService, IDelegateControlMetadata } from './services/delegateService';
 
 // global exports
-export { NavNode, Hero, Message, Subscription, DelegateControl, DelegateControlMetadata, AppComponent, Breadcrumb, CurrentNav, GlobalNav, Footer, HeroComponent, NotificationBadge, SubscriptionBadge, BreadcrumbService, HeroService, NotificationsService, SubscriptionService, CurrentNavProvider, ConfigService, DelegateService, SessionStorage, LocalStorage, SessionStorageService, LocalStorageService, Guid } 
+export { NavNode, Hero, Message, Subscription, DelegateControl, IDelegateControlMetadata, AppComponent, Breadcrumb, CurrentNav, GlobalNav, Footer, HeroComponent, NotificationBadge, SubscriptionBadge, BreadcrumbService, HeroService, NotificationsService, SubscriptionService, CurrentNavProvider, ConfigService, DelegateService, SessionStorage, LocalStorage, SessionStorageService, LocalStorageService, Guid } 
 
 // module definition
 @NgModule({
