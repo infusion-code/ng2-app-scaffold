@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-
+import { ConfigService } from '../services/configService';
 
 @Component({
     selector: 'global-css',
@@ -259,8 +259,26 @@ import { Component, ViewEncapsulation } from '@angular/core';
         .featurette-heading { font-size: 50px; } 
         }
         @media (min-width: 992px) { .featurette-heading { margin-top: 100px; margin-bottom: 20px; } }
-    `],
+    `,
+    // the following styles govern the appearance of scrollbars in webkit browsers
+    `
+        *::-webkit-scrollbar { width: 10px; height: 10px; background-color: #3c444d}
+        *::-webkit-scrollbar-thumb { background-color: #656565; border-radius: 10px; }
+        *::-webkit-scrollbar-track { border-radius: 10px; background-color: #353d47; border: 1px solid #444; box-shadow: 0 0 6px #888 inset; }
+        *::-webkit-scrollbar-thumb:hover, *::-webkit-scrollbar-thumb:active { background-color: #8a8a8a;}
+        *::-webkit-scrollbar-button { background-color: #3c444d;}
+        *::-webkit-scrollbar-button:vertical:start { position: relative; background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><polygon points='50,0 0,100 100,100' fill='#656565' stroke='#000' stroke-width='1' /> </svg>"); background-position: 50% 45%; background-repeat: no-repeat; background-size: 6px 6px;}
+        *::-webkit-scrollbar-button:vertical:start:hover{ background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><polygon points='50,0 0,100 100,100' fill='#8a8a8a' stroke='#000' stroke-width='1' /> </svg>");}
+        *::-webkit-scrollbar-button:vertical:end { position: relative; background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><polygon points='0,0 50,100 100,0' fill='#656565' stroke='#000' stroke-width='1' /> </svg>"); background-position: 50% 55%; background-repeat: no-repeat; background-size: 6px 6px;}
+        *::-webkit-scrollbar-button:vertical:end:hover{ background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><polygon points='0,0 50,100 100,0' fill='#8a8a8a' stroke='#000' stroke-width='1' /> </svg>");}
+        *::-webkit-scrollbar-button:start:horizontal{ position: relative; background-image:url("data:image/svg+xml;utf8, <svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' > <polygon points='0,50 100,100 100,0' fill='#656565' stroke='#000' stroke-width='1' /> </svg>"); background-position: 45% 50%; background-repeat: no-repeat; background-size: 6px 6px;}
+        *::-webkit-scrollbar-button:horizontal:start:hover{ background-image:url("data:image/svg+xml;utf8, <svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' > <polygon points='0,50 100,100 100,0' fill='#8a8a8a' stroke='#000' stroke-width='1' /> </svg>");}
+        *::-webkit-scrollbar-button:end:horizontal{ position: relative; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' > <polygon points='0,0 0,100 100,50' fill='#656565' stroke='#000' stroke-width='1' /> </svg> "); background-position: 55% 50%; background-repeat: no-repeat; background-size: 6px 6px;}
+        *::-webkit-scrollbar-button:end:horizontal:hover{ background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' > <polygon points='0,0 0,100 100,50' fill='#8a8a8a' stroke='#000' stroke-width='1' /> </svg> ");}
+        *::-webkit-scrollbar-corner { background-color: #3c444d;}
+    `
+    ],
 })
 export class GlobalCss {
-
+    constructor(private _config: ConfigService){ }
 }
