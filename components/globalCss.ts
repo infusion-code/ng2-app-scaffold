@@ -10,7 +10,7 @@ import { ConfigService } from '../services/configService';
     `
         .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12,
         .col-xxl-1, .col-xxl-2, .col-xxl-3, .col-xxl-4, .col-xxl-5, .col-xxl-6, .col-xxl-7, .col-xxl-8, .col-xxl-9, .col-xxl-10, .col-xxl-11, .col-xxl-12 { position: relative; min-height: 1px; padding-right: 15px; padding-left: 15px;}
-        @media (min-width: 1600px) {
+        @media (min-width: 1750px) {
             .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12 {  float: left; }
             .col-xl-12 { width: 100%; }
             .col-xl-11 { width: 91.66666667%; }
@@ -64,7 +64,7 @@ import { ConfigService } from '../services/configService';
             .col-xl-offset-1 {margin-left: 8.33333333%;}
             .col-xl-offset-0 {margin-left: 0;}
         }
-        @media (min-width: 1921px) {
+        @media (min-width: 2400px) {
             .col-xxl-1, .col-xxl-2, .col-xxl-3, .col-xxl-4, .col-xxl-5, .col-xxl-6, .col-xxl-7, .col-xxl-8, .col-xxl-9, .col-xxl-10, .col-xxl-11, .col-xxl-12 {  float: left; }
             .col-xxl-12 { width: 100%; }
             .col-xxl-11 { width: 91.66666667%; }
