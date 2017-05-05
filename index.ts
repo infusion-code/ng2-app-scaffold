@@ -22,7 +22,7 @@ import { Breadcrumb } from './components/breadcrumb';
 import { HeroComponent } from './components/hero';
 import { NotificationBadge } from './components/notificationBadge';
 import { SubscriptionBadge } from './components/subscriptionBadge';
-import { GlobalNav } from './components/topMenu';
+import { GlobalNav } from './components/globalNav';
 import { CurrentNav } from './components/currentNav';
 import { VerticalNavBar } from './components/navBarVertical';
 import { Footer } from './components/footer';

@@ -22,7 +22,7 @@
         "components/navBarVertical.ts",
         "components/notificationBadge.ts",
         "components/subscriptionBadge.ts",
-        "components/topMenu.ts",
+        "components/globalNav.ts",
         "models/hero.ts",
         "models/message.ts",
         "models/navNode.ts",
