@@ -7,8 +7,8 @@ import { ConfigService } from '../services/configService';
         <global-css *ngIf="UseGlobalCss == true"></global-css>
         <div class='app-container' [ngClass]="{'expanded': _sideMenuExpanded }">
             <div class="row content-container">
-                <global-nav [ShowLeftNavToggle]="ShowLeftNavToggle" [ExpandCurrentNavOnLoad]="ExpandCurrentNavOnLoad" [ShowSubscriptions]="ShowSubscriptions" [ShowHero]="ShowHero" [ShowNotifications]="ShowNotifications" (SideMenuToggled)="ToggleSideMenu($event)"></global-nav>
-                <current-nav [HomeLabel]="Title" [HomeIcon]="AppIcon"></current-nav>
+                <global-nav [ShowLeftNavToggle]="ShowLeftNavToggle" [ToggleCurrentNav]="_sideMenuExpanded" [ShowSubscriptions]="ShowSubscriptions" [ShowHero]="ShowHero" [ShowNotifications]="ShowNotifications" (SideMenuToggled)="ToggleSideMenu($event)"></global-nav>
+                <current-nav [HomeLabel]="Title" [HomeIcon]="AppIcon" (SideMenuHoverChange)="HandleCurrentNavHoverChange($event)"></current-nav>
                 <!-- Main Content -->
                 <div class="container-fluid padding-top">
                     <router-outlet></router-outlet>
@@ -18,8 +18,10 @@ import { ConfigService } from '../services/configService';
         </div>
     `,
     styles: [`
-        .app-container {  min-height: 100%; position: relative; padding-bottom: 60px; }
-        .app-container .content-container { margin-right: 0; margin-left: 0; }
+        .app-container {  min-height: 100%; position: relative; padding-bottom: 60px; display: flex; flex-direction: column; align-items: stretch; }
+        .app-container > .content-container { margin-right: 0; margin-left: 0; flex-grow: 1; display: flex; flex-direction: column; align-items: stretch; }
+        .app-container > .content-container > .container-fluid { flex-grow: 1; display: flex; flex-direction: column; align-items: stretch; }
+        .app-container > .content-container > .container-fluid > ng-component { flex-grow: 1; display: flex; flex-direction: column; align-items: stretch; }
         .container-fluid > .navbar-collapse, .container-fluid > .navbar-header, .container > .navbar-collapse, .container > .navbar-header { margin-left: -15px; margin-right: -15px; }
         .page-title { font-family: 'Roboto Condensed', sans-serif;margin-left: -10px;margin-right: -10px; padding: 15px 10px; margin-bottom: 0px; height: auto; }
         .page-title .title { font-size: 2em; }
@@ -39,12 +41,13 @@ import { ConfigService } from '../services/configService';
 export class AppComponent {
     private _config: ConfigService;
     private _sideMenuExpanded:boolean = true;
+    private _sideMenuToggled: boolean = true;
+    private _sideMenuHovered: boolean = false;
 
     public get ShowLeftNavToggle(): boolean { return this._config.ShowLeftNavToggle; }
     public get ShowSubscriptions(): boolean { return this._config.ShowSubscriptions; }
     public get ShowHero(): boolean { return this._config.ShowHero; }
     public get ShowNotifications(): boolean { return this._config.ShowNotifications; }
-    public get ExpandCurrentNavOnLoad(): boolean { return this._config.ExpandCurrentNavOnLoad; }
     public get Title(): string { return this._config.Title; }
     public get AppIcon(): string { return this._config.AppIcon; }
     public get Copyright(): string { return this._config.Copyright; }
@@ -54,9 +57,22 @@ export class AppComponent {
 
     constructor(config: ConfigService) {
         this._config = config;
+        this._sideMenuExpanded = this._config.ExpandCurrentNavOnLoad;
+        this._sideMenuToggled = this._sideMenuExpanded;
     }
 
     public ToggleSideMenu(state:boolean){
+        this._sideMenuToggled = state;
         this._sideMenuExpanded = state;
+    }
+
+    private HandleCurrentNavHoverChange(state: boolean){
+        if(this._config.PushContentOnCurrentNavHover){
+            this._sideMenuHovered = state;
+            if(this._sideMenuToggled) this._sideMenuExpanded = true;
+            else{
+                this._sideMenuExpanded = state;
+            }
+        }
     }
 }

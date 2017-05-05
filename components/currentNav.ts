@@ -1,10 +1,10 @@
-﻿import { Component, Input } from '@angular/core';
+﻿import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { DelegateService } from '../services/delegateService';
 
 @Component({
     selector: 'current-nav',
     template: `
-        <div class="side-menu sidebar-inverse">
+        <div class="side-menu sidebar-inverse" (mouseover)="EmitMouseOver($event)" (mouseout)="EmitMouseOut($event)">
             <nav class="navbar navbar-default" role="navigation">
                 <div class="side-menu-container">
                     <div class="navbar-header">
@@ -107,5 +107,16 @@ export class CurrentNav {
         public get HomeIcon(): string { return this._homeIcon; }
         public set HomeIcon(val: string) { this._homeIcon = val; }
 
+    @Output()
+        public SideMenuHoverChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+
     constructor() { }
+
+    private EmitMouseOver(e: MouseEvent){
+        this.SideMenuHoverChange.emit(true);
+    }
+    private EmitMouseOut(e: MouseEvent){
+        this.SideMenuHoverChange.emit(false);
+    }
+    
 }

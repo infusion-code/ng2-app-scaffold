@@ -38,9 +38,11 @@ import { CurrentNavProvider } from './services/currentNavProvider';
 import { ConfigService, Guid } from './services/configService';
 import { LocalStorageService, SessionStorageService } from './services/storageService';
 import { DelegateService, IDelegateControlMetadata } from './services/delegateService';
+import { WindowRef } from './services/windowref';
+import { DocumentRef } from './services/documentref';
 
 // global exports
-export { NavNode, Hero, Message, Subscription, DelegateControl, IDelegateControlMetadata, AppComponent, Breadcrumb, CurrentNav, GlobalNav, Footer, HeroComponent, NotificationBadge, SubscriptionBadge, BreadcrumbService, HeroService, NotificationsService, SubscriptionService, CurrentNavProvider, ConfigService, DelegateService, SessionStorage, LocalStorage, SessionStorageService, LocalStorageService, Guid } 
+export { NavNode, Hero, Message, Subscription, DelegateControl, IDelegateControlMetadata, AppComponent, Breadcrumb, CurrentNav, GlobalNav, Footer, HeroComponent, NotificationBadge, SubscriptionBadge, WindowRef, DocumentRef, BreadcrumbService, HeroService, NotificationsService, SubscriptionService, CurrentNavProvider, ConfigService, DelegateService, SessionStorage, LocalStorage, SessionStorageService, LocalStorageService, Guid } 
 
 // module definition
 @NgModule({
@@ -60,7 +62,9 @@ export class AppScaffoldModule {
                 subscriptions ? { provide: SubscriptionService, useValue: subscriptions } : SubscriptionService,
                 currentNavProvider ? { provide: CurrentNavProvider, useValue: currentNavProvider } : CurrentNavProvider,
                 configService ? { provide: ConfigService, useValue: configService } : ConfigService,
-                delegateService ? { provide: DelegateService, useValue: delegateService } : DelegateService
+                delegateService ? { provide: DelegateService, useValue: delegateService } : DelegateService,
+                WindowRef,
+                DocumentRef
             ]
         };
     }

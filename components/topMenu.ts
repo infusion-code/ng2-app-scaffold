@@ -10,8 +10,14 @@ import { DelegateService } from '../services/delegateService';
                     <button *ngIf="ShowLeftNavToggle"  type="button" [ngClass]="{'fa-rotate-90': _sideMenuToggled }" class="navbar-expand-toggle" (click)="ToggleSideMenu()">
                         <i class="fa fa-bars icon"></i>
                     </button>
-                    <span *ngIf="!ShowLeftNavToggle" class="navbar-spacer">&nbsp;</span>
-                    <breadcrumb></breadcrumb>
+                    <span *ngIf="!ShowLeftNavToggle" class="navbar-spacer">&nbsp;</span>                    
+                    <ng-container *ngIf="!_hasBreadcrumbDelegate">
+                        <breadcrumb></breadcrumb>
+                    </ng-container>
+                    <ng-container *ngIf="_hasBreadcrumbDelegate">
+                        <delegate-control [id]="_breadcrumbDelegateId"></delegate-control>
+                    </ng-container>
+
                     <button *ngIf="ShowSubscriptions || ShowHero || ShowNotifications" type="button" class="navbar-right-expand-toggle pull-right visible-xs" (click)="ToggleTopMenu()">
                         <div><i class="fa fa-th icon"></i></div>
                     </button>
@@ -20,12 +26,12 @@ import { DelegateService } from '../services/delegateService';
                     <button *ngIf="ShowSubscriptions || ShowHero || ShowNotifications" type="button" [ngClass]="{'fa-rotate-90': _topMenuToggled}" class="navbar-right-expand-toggle pull-right visible-xs" (click)="ToggleTopMenu()">
                         <i class="fa fa-times icon"></i>
                     </button>
-                    <ng-container *ngIf="!_hasDelegate">
+                    <ng-container *ngIf="!_hasNotificationDelegate">
                         <notificationBadge *ngIf="ShowNotifications"></notificationBadge>
                         <subscriptionBadge [MoreLink]="'/home'" *ngIf="ShowSubscriptions == true"></subscriptionBadge>
                     </ng-container>
-                    <ng-container *ngIf="_hasDelegate">
-                        <delegate-control [id]="_delegateId"></delegate-control>
+                    <ng-container *ngIf="_hasNotificationDelegate">
+                        <delegate-control [id]="_notificationDelegateId"></delegate-control>
                     </ng-container>
                     <topnavhero *ngIf="ShowHero == true"></topnavhero>
                 </ul>
@@ -79,8 +85,10 @@ export class GlobalNav {
     private _showSubscriptions: boolean = true;
     private _sideMenuToggled: boolean = true;
     private _topMenuToggled: boolean = false;
-    private _hasDelegate: boolean = false;
-    private _delegateId: string = "global-nav.notifications";
+    private _hasNotificationDelegate: boolean = false;
+    private _hasBreadcrumbDelegate: boolean = false;
+    private _notificationDelegateId: string = "global-nav.notifications";
+    private _breadcrumbDelegateId: string = "global-nav.breadcrumb"
 
     @Input()
         public get ShowLeftNavToggle(): boolean { return this._showLeftNavToggle; }
@@ -99,17 +107,15 @@ export class GlobalNav {
         public set ShowSubscriptions(val: boolean) { this._showSubscriptions = val; }
 
     @Input()
-        public get ExpandCurrentNavOnLoad(): boolean { return this._sideMenuToggled; }
-        public set ExpandCurrentNavOnLoad(val: boolean) { 
-            this._sideMenuToggled = val; 
-            this.SideMenuToggled.emit(this._sideMenuToggled); 
-        }
+        public get ToggleCurrentNav(): boolean { return this._sideMenuToggled; }
+        public set ToggleCurrentNav(val: boolean) {  this._sideMenuToggled = val;  }
 
     @Output()
         public SideMenuToggled: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     constructor(delegates: DelegateService){
-        if(delegates.GetDelegate(this._delegateId)) this._hasDelegate = true;
+        if(delegates.GetDelegate(this._notificationDelegateId)) this._hasNotificationDelegate = true;
+        if(delegates.GetDelegate(this._breadcrumbDelegateId)) this._hasBreadcrumbDelegate = true;
     }
 
     public ToggleSideMenu() {
