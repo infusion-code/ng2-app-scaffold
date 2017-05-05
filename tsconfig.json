@@ -9,8 +9,8 @@
         "declaration": true,
         "outDir": "dist",
         "skipDefaultLibCheck": true,
-        "lib": [ "es6", "dom" ],
-        "types": [ "node" ]
+        "lib": ["es6", "dom"],
+        "types": ["node"]
     },
     "files": [
         "index.ts",
@@ -27,6 +27,7 @@
         "models/message.ts",
         "models/navNode.ts",
         "models/subscription.ts",
+        "modules/app-material.ts",
         "services/breadcrumb.ts",
         "services/configService.ts",
         "services/currentNavProvider.ts",

@@ -6,32 +6,32 @@ import { NavNode } from '../models/navNode';
     selector: "navbar-vertical",
     template: `
         <ul class="nav navbar-nav" *ngIf="_root != null" id="parent-{{_root.Id}}">
-                <ng-container *ngFor="let n of _root.Children">
-                    <li *ngIf="n.Children.length==0" class="{{n.Title.length > 25 ? 'multiline' : ''}}" [routerLinkActive]="['active']">
+            <ng-container *ngFor="let n of _root.Children">
+                <li *ngIf="n.Children.length==0" class="{{n.Title.length > 25 ? 'multiline' : ''}}" [routerLinkActive]="['active']">
+                    <a [routerLink]="[n.Url]" id="{{n.Id}}">
+                        <span class="icon fa {{n.FAIcon}} {{n.Title.length > 25 ? 'multiline' : ''}}"></span><span class="title {{n.Title.length > 25 ? 'multiline' : ''}}">{{n.Title}}</span>
+                    </a>
+                </li>
+                <li *ngIf="n.Children.length>0" class="panel panel-default dropdown {{n.Title.length > 25 ? 'multiline' : ''}}" [routerLinkActive]="['active']">
+                    <a *ngIf="n.Url.length==0" data-toggle="collapse" id="{{n.Id}}" href="#{{n.Id}}_dropdown" [attr.data-parent]="'#parent-' + _root.Id">
+                        <span class="icon fa {{n.FAIcon}} {{n.Title.length > 25 ? 'multiline' : ''}}"></span><span class="title {{n.Title.length > 25 ? 'multiline' : ''}}">{{n.Title}}</span>
+                    </a>
+                    <div *ngIf="n.Url.length>0">
                         <a [routerLink]="[n.Url]" id="{{n.Id}}">
                             <span class="icon fa {{n.FAIcon}} {{n.Title.length > 25 ? 'multiline' : ''}}"></span><span class="title {{n.Title.length > 25 ? 'multiline' : ''}}">{{n.Title}}</span>
                         </a>
-                    </li>
-                    <li *ngIf="n.Children.length>0" class="panel panel-default dropdown {{n.Title.length > 25 ? 'multiline' : ''}}" [routerLinkActive]="['active']">
-                        <a *ngIf="n.Url.length==0" data-toggle="collapse" id="{{n.Id}}" href="#{{n.Id}}_dropdown" [attr.data-parent]="'#parent-' + _root.Id">
-                            <span class="icon fa {{n.FAIcon}} {{n.Title.length > 25 ? 'multiline' : ''}}"></span><span class="title {{n.Title.length > 25 ? 'multiline' : ''}}">{{n.Title}}</span>
+                        <a class="expander" data-toggle="collapse" [attr.data-target]="'#' + n.Id + '_dropdown'" [attr.data-parent]="'#parent-' + _root.Id">
+                            <span class="icon fa fa-angle-down"></span>
                         </a>
-                        <div *ngIf="n.Url.length>0">
-                            <a [routerLink]="[n.Url]" id="{{n.Id}}">
-                                <span class="icon fa {{n.FAIcon}} {{n.Title.length > 25 ? 'multiline' : ''}}"></span><span class="title {{n.Title.length > 25 ? 'multiline' : ''}}">{{n.Title}}</span>
-                            </a>
-                            <a class="expander" data-toggle="collapse" [attr.data-target]="'#' + n.Id + '_dropdown'" [attr.data-parent]="'#parent-' + _root.Id">
-                                <span class="icon fa fa-angle-down"></span>
-                            </a>
+                    </div>
+                    <!-- Dropdown -->
+                    <div id="{{n.Id}}_dropdown" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <navbar-vertical [Node]="n"></navbar-vertical>
                         </div>
-                        <!-- Dropdown -->
-                        <div id="{{n.Id}}_dropdown" class="panel-collapse collapse">
-                            <div class="panel-body">
-                                <navbar-vertical [Node]="n"></navbar-vertical>
-                            </div>
-                        </div>
-                    </li>
-                </ng-container>
+                    </div>
+                </li>
+            </ng-container>
         </ul>
     `,
     styles: [`

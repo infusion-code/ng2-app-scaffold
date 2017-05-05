@@ -39,14 +39,17 @@ import { ConfigService, Guid } from './services/configService';
 import { LocalStorageService, SessionStorageService } from './services/storageService';
 import { DelegateService, IDelegateControlMetadata } from './services/delegateService';
 
+// module imports
+import { AppMaterialModule } from './modules/app-material';
+
 // global exports
 export { NavNode, Hero, Message, Subscription, DelegateControl, IDelegateControlMetadata, AppComponent, Breadcrumb, CurrentNav, GlobalNav, Footer, HeroComponent, NotificationBadge, SubscriptionBadge, BreadcrumbService, HeroService, NotificationsService, SubscriptionService, CurrentNavProvider, ConfigService, DelegateService, SessionStorage, LocalStorage, SessionStorageService, LocalStorageService, Guid } 
 
 // module definition
 @NgModule({
-    imports: [CommonModule, RouterModule ],
+    imports: [CommonModule, RouterModule, AppMaterialModule],
     declarations: [AppComponent, GlobalCss, Breadcrumb, CurrentNav, GlobalNav, Footer, HeroComponent, NotificationBadge, SubscriptionBadge, VerticalNavBar, DelegateControl ],
-    exports: [AppComponent, Breadcrumb, CurrentNav, GlobalNav, Footer, HeroComponent, NotificationBadge, SubscriptionBadge, CommonModule, RouterModule, DelegateControl ],
+    exports: [AppComponent, Breadcrumb, CurrentNav, GlobalNav, Footer, HeroComponent, NotificationBadge, SubscriptionBadge, CommonModule, AppMaterialModule, RouterModule, DelegateControl ],
 })
 export class AppScaffoldModule {
 
