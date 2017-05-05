@@ -142,6 +142,7 @@ import { ConfigService } from '../services/configService';
         .app-container .content-container .side-body.padding-top { padding-top: 84px; }
         .app-container .side-body { margin-left: 75px; margin-right: 15px;-webkit-transition: all 0.25s;transition: all 0.25s; }
         .app-container.expanded .side-body { margin-left: 260px; }
+        .app-container > .content-container > .container-fluid > ng-component { flex-grow: 1; display: flex; flex-direction: column; align-items: stretch; }
     `,
     `
         .card { background-color: #FFF; border-radius: 1px; overflow: hidden; position: relative; }

@@ -10,7 +10,7 @@ import { ConfigService } from '../services/configService';
                 <global-nav [ShowLeftNavToggle]="ShowLeftNavToggle" [ToggleCurrentNav]="_sideMenuExpanded" [ShowSubscriptions]="ShowSubscriptions" [ShowHero]="ShowHero" [ShowNotifications]="ShowNotifications" (SideMenuToggled)="ToggleSideMenu($event)"></global-nav>
                 <current-nav [HomeLabel]="Title" [HomeIcon]="AppIcon" (SideMenuHoverChange)="HandleCurrentNavHoverChange($event)"></current-nav>
                 <!-- Main Content -->
-                <div class="container-fluid padding-top">
+                <div class="container-fluid no-margin padding-top">
                     <router-outlet></router-outlet>
                 </div>   
             </div>
