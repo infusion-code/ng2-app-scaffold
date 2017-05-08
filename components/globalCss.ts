@@ -138,10 +138,9 @@ import { ConfigService } from '../services/configService';
         a:hover, a:focus { text-decoration: none; }
         .font-weight-300 { font-weight: 300; }
         .text-indent { text-indent: 1em; }
-        .app-container .content-container .side-body { padding-top: 70px; }
-        .app-container .content-container .side-body.padding-top { padding-top: 84px; }
-        .app-container .side-body { margin-left: 75px; margin-right: 15px;-webkit-transition: all 0.25s;transition: all 0.25s; }
-        .app-container.expanded .side-body { margin-left: 260px; }
+        .app-container .content-container .main-content { padding-top: 61px; }
+        .app-container .content-container .main-content.padding-top { padding-top: 84px; }
+        .app-container .main-content { -webkit-transition: all 0.25s;transition: all 0.25s; height: 100%; }
     `,
     `
         .card { background-color: #FFF; border-radius: 1px; overflow: hidden; position: relative; }

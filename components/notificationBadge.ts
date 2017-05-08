@@ -1,37 +1,16 @@
-﻿import { Component, OnInit, Input } from '@angular/core';
+﻿import { SidePanelService } from './../services/sidePanel';
+import { Component, OnInit, Input } from '@angular/core';
 import { NotificationsService } from '../services/notifications';
 import { Message } from '../models/message';
-
 
 @Component({
     selector: 'notificationBadge',
     template: `
         <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-comments-o"></i> <span *ngIf="MessageCount > 0">{{MessageCount}}</span></a>
-            <ul class="dropdown-menu animated fadeInDown">
-                <li class="title">
-                    {{Label}} <span class="badge pull-right">{{MessageCount}}</span>
-                </li>
-                <li *ngIf="Messages == null || Messages.length == 0" class="message">
-                    No new notifications
-                </li>
-                <ng-container *ngIf="Messages != null && Messages.length > 0">
-                    <ul class="list-group notifications">
-                        <ng-container *ngFor="let m of _messages">
-                            <a *ngIf="m.Detail == null || m.Detail == ''">
-                                <li class="list-group-item message">
-                                    {{m.Title}}
-                                </li>
-                            </a>
-                            <a *ngIf="m.Detail != null && m.Detail != ''" [routerLink]=[m.Detail]>
-                                <li class="list-group-item message">
-                                    {{m.Title}}
-                                </li>
-                            </a>
-                        </ng-container>
-                    </ul>
-                </ng-container>
-            </ul>
+            <a href="#" (click)="ToggleNotification()">
+                <md-icon class="icon">comment</md-icon>
+                <span *ngIf="MessageCount > 0">{{MessageCount}}</span>
+            </a>
         </li>
     `,
     styles: [`
@@ -50,16 +29,18 @@ import { Message } from '../models/message';
         .dropdown > a:hover { text-decoration: none; color: #ddd}
         .dropdown.open > a { background-color: #575F68; }
         .dropdown-menu > .title { cursor: default; }
+        .icon { font-size: 16px; position: relative; top: 4px; left: 4px; }
     `]
 })
 export class NotificationBadge implements OnInit {
     private _service: NotificationsService;
+    private _sidePanel: SidePanelService;
     private _label: string = "Notifications";
     private _messages: Array<Message>;
 
     @Input()
-        public get Label(): string { return this._label; }
-        public set Label(val: string) { this._label = val; }
+    public get Label(): string { return this._label; }
+    public set Label(val: string) { this._label = val; }
 
     public get Messages(): Array<Message> { return this._messages; }
     public get MessageCount(): number {
@@ -67,8 +48,9 @@ export class NotificationBadge implements OnInit {
         return 0;
     }
 
-    constructor(service: NotificationsService) {
+    constructor(service: NotificationsService, sidePanel: SidePanelService) {
         this._service = service;
+        this._sidePanel = sidePanel;
     }
 
     public ngOnInit() {
@@ -77,4 +59,7 @@ export class NotificationBadge implements OnInit {
         });
     }
 
+    private ToggleNotification() {
+        this._sidePanel.toggle('notification');
+    }
 }

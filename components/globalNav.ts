@@ -5,12 +5,17 @@ import { DelegateService } from '../services/delegateService';
     selector: 'global-nav',
     template: `
         <nav class="navbar navbar-default navbar-fixed-top navbar-top">
+            <div class="icon-title">
+                <a *ngIf="!_hasNavHeaderDelegate" class="navbar-brand" routerLink="/">
+                    <div class="icon fa {{HomeIcon}} {{HomeLabel.length > 25 ? 'multiline' : ''}}"></div>
+                    <div class="title {{HomeLabel.length > 25 ? 'multiline' : ''}}">{{HomeLabel}}</div>
+                </a>
+                <ng-container *ngIf="_hasNavHeaderDelegate">
+                    <delegate-control [id]="_delegateNavHeaderId"></delegate-control>
+                </ng-container>
+            </div>
             <div class="container-fluid navbar-container">
                 <div class="navbar-header">
-                    <button *ngIf="ShowLeftNavToggle"  type="button" [ngClass]="{'fa-rotate-90': _sideMenuToggled }" class="navbar-expand-toggle" (click)="ToggleSideMenu()">
-                        <i class="fa fa-bars icon"></i>
-                    </button>
-                    <span *ngIf="!ShowLeftNavToggle" class="navbar-spacer">&nbsp;</span>
                     <breadcrumb></breadcrumb>
                     <button *ngIf="ShowSubscriptions || ShowHero || ShowNotifications" type="button" class="navbar-right-expand-toggle pull-right visible-xs" (click)="ToggleTopMenu()">
                         <div><i class="fa fa-th icon"></i></div>
@@ -22,7 +27,7 @@ import { DelegateService } from '../services/delegateService';
                     </button>
                     <ng-container *ngIf="!_hasDelegate">
                         <notificationBadge *ngIf="ShowNotifications"></notificationBadge>
-                        <subscriptionBadge [MoreLink]="'/home'" *ngIf="ShowSubscriptions == true"></subscriptionBadge>
+                        <subscriptionBadge *ngIf="ShowSubscriptions == true"></subscriptionBadge>
                     </ng-container>
                     <ng-container *ngIf="_hasDelegate">
                         <delegate-control [id]="_delegateId"></delegate-control>
@@ -33,7 +38,9 @@ import { DelegateService } from '../services/delegateService';
         </nav>
     `,
     styles: [`
-        .navbar { z-index: 10001; padding-left: 60px; -webkit-transition: all 0.25s; transition: all 0.25s; }
+        .icon-title > a { width: 250px; border-bottom: 0px solid #e7e7e7; background-color: #22A7F0; color: #fff; height: 60px; padding: 20px; }
+        .icon-title .title { display: inline-block; }
+        .navbar { z-index: 10001; -webkit-transition: all 0.25s; transition: all 0.25s; }
         .navbar.navbar-fixed-top { border-bottom: 1px solid black; }
         .navbar > .container, .navbar > .container-fluid { z-index: 10001; }
         .navbar > .container .navbar-expand-toggle, .navbar > .container-fluid .navbar-expand-toggle { width: 60px; height: 60px; background-color: transparent; border: 0px; float: left; -moz-transition: all 0.25s linear; -webkit-transition: all 0.25s linear; transition: all 0.25s linear; opacity: 0.75;}
@@ -43,7 +50,6 @@ import { DelegateService } from '../services/delegateService';
         .navbar > .container .navbar-right-expand-toggle .icon, .navbar > .container-fluid .navbar-right-expand-toggle .icon { font-size: 1.4em; }
         .navbar .navbar-nav /deep/ .dropdown-menu, .navbar.navbar-default .navbar-nav /deep/ .dropdown-menu { background-color: #F9F9F9; border-color: #E4E4E4 }
         .navbar .navbar-right { background-color: #000;}
-        :host-context(.app-container.expanded .content-container) .navbar-top { padding-left: 250px; }
         .container-fluid > .navbar-collapse, .container-fluid > .navbar-header, .container > .navbar-collapse, .container > .navbar-header { margin-left: -15px; margin-right: -15px; }
         @media (max-width: 768px) {
           .navbar { padding-left: 0; }
@@ -73,18 +79,28 @@ import { DelegateService } from '../services/delegateService';
     ]
 })
 export class GlobalNav {
-    private _showLeftNavToggle: boolean = true;
+    private _homeLabel: string = "Home";
+    private _homeIcon: string = "fa-paper-plane";
+    // private _showLeftNavToggle: boolean = true;
     private _showHero: boolean = true;
     private _showNotifications: boolean = true;
     private _showSubscriptions: boolean = true;
-    private _sideMenuToggled: boolean = true;
+    // private _sideMenuToggled: boolean = true;
     private _topMenuToggled: boolean = false;
     private _hasDelegate: boolean = false;
     private _delegateId: string = "global-nav.notifications";
 
     @Input()
-        public get ShowLeftNavToggle(): boolean { return this._showLeftNavToggle; }
-        public set ShowLeftNavToggle(val: boolean) { this._showLeftNavToggle = val; }
+        public get HomeLabel(): string { return this._homeLabel; }
+        public set HomeLabel(val: string) { this._homeLabel = val; }
+
+    @Input()
+        public get HomeIcon(): string { return this._homeIcon; }
+        public set HomeIcon(val: string) { this._homeIcon = val; }
+
+    // @Input()
+    //     public get ShowLeftNavToggle(): boolean { return this._showLeftNavToggle; }
+    //     public set ShowLeftNavToggle(val: boolean) { this._showLeftNavToggle = val; }
 
     @Input()
         public get ShowHero(): boolean { return this._showHero; }
@@ -98,12 +114,12 @@ export class GlobalNav {
         public get ShowSubscriptions(): boolean { return this._showSubscriptions; }
         public set ShowSubscriptions(val: boolean) { this._showSubscriptions = val; }
 
-    @Input()
-        public get ExpandCurrentNavOnLoad(): boolean { return this._sideMenuToggled; }
-        public set ExpandCurrentNavOnLoad(val: boolean) { 
-            this._sideMenuToggled = val; 
-            this.SideMenuToggled.emit(this._sideMenuToggled); 
-        }
+    // @Input()
+    //     public get ExpandCurrentNavOnLoad(): boolean { return this._sideMenuToggled; }
+    //     public set ExpandCurrentNavOnLoad(val: boolean) { 
+    //         this._sideMenuToggled = val; 
+    //         this.SideMenuToggled.emit(this._sideMenuToggled); 
+    //     }
 
     @Output()
         public SideMenuToggled: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -112,10 +128,10 @@ export class GlobalNav {
         if(delegates.GetDelegate(this._delegateId)) this._hasDelegate = true;
     }
 
-    public ToggleSideMenu() {
-        this._sideMenuToggled = !this._sideMenuToggled;
-        this.SideMenuToggled.emit(this._sideMenuToggled);
-    }
+    // public ToggleSideMenu() {
+    //     this._sideMenuToggled = !this._sideMenuToggled;
+    //     this.SideMenuToggled.emit(this._sideMenuToggled);
+    // }
 
     public ToggleTopMenu() { this._topMenuToggled = !this._topMenuToggled;  }
 }

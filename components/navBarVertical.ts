@@ -47,7 +47,7 @@ import { NavNode } from '../models/navNode';
 })
 export class VerticalNavBar implements OnInit {
 
-    private _provider: CurrentNavProvider;    
+    private _provider: CurrentNavProvider;
     private _root: NavNode;
 
     @Input()
