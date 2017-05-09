@@ -19,8 +19,6 @@ import { DelegateService } from '../services/delegateService';
     `]
 })
 export class CurrentNav {
-    // private _homeLabel: string = "Home";
-    // private _homeIcon: string = "fa-paper-plane";
     private _hasNavHeaderDelegate:boolean = false;
     private _hasBeforeNavDelegate:boolean = false;
     private _hasAfterNavDelegate:boolean = false;
@@ -29,14 +27,6 @@ export class CurrentNav {
     private _delegateBeforeNavId:string = "current-nav.before";
     private _delegateAfterNavId:string = "current-nav.after";
     private _delegateNavId:string = "current-nav";
-
-    // @Input()
-    //     public get HomeLabel(): string { return this._homeLabel; }
-    //     public set HomeLabel(val: string) { this._homeLabel = val; }
-
-    // @Input()
-    //     public get HomeIcon(): string { return this._homeIcon; }
-    //     public set HomeIcon(val: string) { this._homeIcon = val; }
 
     constructor() { }
 }

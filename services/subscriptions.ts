@@ -33,7 +33,7 @@ export class SubscriptionService {
         }
         this._subscriptions.push(new Subscription("New Alerts", 5, "priority_hight", "", "/home"));
         this._subscriptions.push(new Subscription("New Tasks", 3, "check", "success"));
-        this._subscriptions.push(new Subscription("Unread Messages", 18, "comment", "danger"));
+        this._subscriptions.push(new Subscription("Unread Messages", 18, "forum", "danger"));
 
    }
 

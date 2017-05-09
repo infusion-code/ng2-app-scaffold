@@ -8,7 +8,7 @@ import { Message } from '../models/message';
     template: `
         <li mdTooltip="{{Label}}" mdTooltipShowDelay="1000">
             <a href="#" (click)="ToggleNotification()">
-                <md-icon class="icon">comment</md-icon>
+                <md-icon class="icon">forum</md-icon>
                 <span *ngIf="MessageCount > 0">{{MessageCount}}</span>
             </a>
         </li>

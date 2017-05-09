@@ -138,7 +138,6 @@ import { ConfigService } from '../services/configService';
         a:hover, a:focus { text-decoration: none; }
         .font-weight-300 { font-weight: 300; }
         .text-indent { text-indent: 1em; }
-        .app-container .content-container .main-content { padding-top: 61px; }
         .app-container .content-container .main-content.padding-top { padding-top: 84px; }
         .app-container .main-content { -webkit-transition: all 0.25s;transition: all 0.25s; height: 100%; }
     `,

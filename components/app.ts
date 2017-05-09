@@ -18,7 +18,7 @@ import { ConfigService } from '../services/configService';
     `,
     styles: [`
         .app-container { height: 100%; position: relative; }
-        .app-container .content-container { height: 100%; margin-right: 0; margin-left: 0; }
+        .app-container .content-container { height: calc(100% - 64px); margin-right: 0; margin-left: 0; }
         .container-fluid > .navbar-collapse, .container-fluid > .navbar-header, .container > .navbar-collapse, .container > .navbar-header { margin-left: -15px; margin-right: -15px; }
         .page-title { font-family: 'Roboto Condensed', sans-serif;margin-left: -10px;margin-right: -10px; padding: 15px 10px; margin-bottom: 0px; height: auto; }
         .page-title .title { font-size: 2em; }

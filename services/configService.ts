@@ -10,7 +10,7 @@ export class ConfigService {
     protected _showNotifications: boolean;
     protected _useGlobalCss: boolean;
     protected _title: string;
-    protected _faIcon: string;
+    protected _mdIcon: string;
     protected _copyright: string;
     protected _version: string;
     protected _releaseNotes: string;
@@ -21,7 +21,7 @@ export class ConfigService {
     public get ShowNotifications(): boolean { return this._showNotifications; }
     public get ExpandCurrentNavOnLoad() : boolean { return this._expandCurrentNavOnLoad; }
     public get Title(): string { return this._title; }
-    public get AppIcon(): string { return this._faIcon; }
+    public get AppIcon(): string { return this._mdIcon; }
     public get Copyright(): string { return this._copyright; }
     public get Version(): string { return this._version; }
     public get ReleaseNotes(): string { return this._releaseNotes; }
@@ -30,7 +30,7 @@ export class ConfigService {
 
     constructor() {
         this._title = "App Title";
-        this._faIcon = "fa-paper-plane-o";
+        this._mdIcon = "domain";
         this._showLeftNavToggle = true;
         this._showSubscriptions = true;
         this._showHero = true;
@@ -39,7 +39,7 @@ export class ConfigService {
         this._useGlobalCss = true;
         this._copyright = "Copyright © 2010-2017, Infusion.";
         this._version = "0.0.1";
-        this._releaseNotes = ""; 
+        this._releaseNotes = "";
         this._storageKey = "appStorage";
     }
 }
