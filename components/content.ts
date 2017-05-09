@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
     selector: 'content',
     template: `
         <md-sidenav-container class="sidenav-container">
-            <md-sidenav class="sidenav" mode="side" opened="true" align="start">
+            <md-sidenav class="sidenav" [mode]="sideNavMode" opened="true" align="start">
                 <current-nav></current-nav>
             </md-sidenav>
             <div class="router-outlet">
@@ -28,9 +28,9 @@ import { Component, Input, OnInit } from '@angular/core';
         .sidepanel.mat-sidenav-opened { width: 350px; }
         .router-outlet { padding: 15px; }
         @media (max-width: 768px) {
-            .sidenav { width:0px; min-width: 0px; }
+            
         }
-        @media (max-width: 468px) {
+        @media (max-width: 498px) {
             :host-context(.app-container.expanded .content-container) .sidepanel { width: 100%; -webkit-transition: all 0.25s; transition: all 0.25s; }
             .sidepanel.mat-sidenav-opened { width: 100%; }
         }
@@ -38,6 +38,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class Content implements OnInit {
     private sidePanelOpened: boolean;
+    private sideNavMode: string;
     private delegateId: string;
     private _copyright: string = "Copyright © 2017, Infusion.";
     private _version: string = "0.0.0";
@@ -57,6 +58,7 @@ export class Content implements OnInit {
 
     constructor(private sidePanel: SidePanelService, private delegate: DelegateService) {
         this.sidePanelOpened = false;
+        this.sideNavMode = 'side';
     }
 
     ngOnInit() {

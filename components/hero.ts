@@ -10,20 +10,18 @@ import * as $ from 'jquery';
 @Component({
     selector: 'topnavhero',
     template: `
-        <li class="dropdown profile" mdTooltip="{{Hero ? Hero.Name : 'Profile'}}" mdTooltipShowDelay="1000">
-            <a href="#" (click)="ToggleHero()" role="button" aria-expanded="false">
+        <li mdTooltip="{{Hero ? Hero.Name : 'Profile'}}" mdTooltipShowDelay="1000">
+            <span href="#" (click)="ToggleHero()">
                 <span *ngIf="Hero">{{Hero.Name}}</span>
                 <span class="caret"></span>
-            </a>
+            </span>
         </li>
     `,
     styles: [`
         :host { float: left; }
         :host > li, :host > li > a {display: block }
-        :host > li > a { font-family: 'Roboto Condensed', sans-serif; height: 60px; line-height: 60px; padding: 0px 20px 0px 20px; }
-        .dropdown.profile > a { font-family: 'Roboto Condensed', sans-serif; height: 60px; line-height: 60px; padding: 0px 20px 0px 20px; color: white; text-decoration: none; }
-        .dropdown.profile > a:hover { text-decoration: none; color: #ddd}
-        .dropdown.profile.open > a { background-color: #575F68; }
+        :host > li > span { font-family: 'Roboto Condensed', sans-serif; height: 64px; line-height: 64px; padding: 0px 20px 0px 20px; }
+        li { cursor: pointer; }
     `]
 })
 export class HeroComponent implements OnInit {

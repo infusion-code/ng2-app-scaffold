@@ -7,17 +7,18 @@ import { Message } from '../models/message';
     selector: 'notificationBadge',
     template: `
         <li mdTooltip="{{Label}}" mdTooltipShowDelay="1000">
-            <a href="#" (click)="ToggleNotification()">
+            <span href="#" (click)="ToggleNotification()">
                 <md-icon class="icon">forum</md-icon>
                 <span *ngIf="MessageCount > 0">{{MessageCount}}</span>
-            </a>
+            </span>
         </li>
     `,
     styles: [`
         :host { float: left; }
-        :host > li, :host > li > a {display: block }
-        :host > li > a { font-family: 'Roboto Condensed', sans-serif; height: 60px; line-height: 60px; padding: 0px 20px 0px 20px; }
-        :host > li > a { font-family: 'Roboto Condensed', sans-serif; height: 60px; line-height: 60px; padding: 0px 20px 0px 20px; color: #fff }
+        :host > li, :host > li > span { display: block }
+        :host > li > span { font-family: 'Roboto Condensed', sans-serif; height: 64px; line-height: 64px; padding: 0px 20px 0px 20px; }
+        :host > li > span { font-family: 'Roboto Condensed', sans-serif; height: 64px; line-height: 64px; padding: 0px 20px 0px 20px; }
+        li { cursor: pointer; }
         .icon { font-size: 16px; position: relative; top: 4px; left: 4px; }
     `]
 })
