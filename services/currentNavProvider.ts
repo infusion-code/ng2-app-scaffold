@@ -30,14 +30,18 @@ export class CurrentNavProvider {
         //
 
         let i: number = 0;
+        let gc: Array<NavNode> = new Array<NavNode>();
+        gc.push(new NavNode("Group 1.2 Item 1", "group1/group12/nav1", "curNavNode_" + (i++).toString(), "insert_chart"));
+        gc.push(new NavNode("Group 1.2 Item 2 with long title to show nav item line break", "group1/group12/nav2", "curNavNode_" + (i++).toString(), "pie_chart"));
+
         let c: Array<NavNode> = new Array<NavNode>();
-        c.push(new NavNode("Group 1 Item 1", "group1/nav1", "curNavNode_" + (i++).toString(), "fa-bar-chart"));
-        c.push(new NavNode("Group 1 Item 2 with long title to show nav item line break", "group1/nav2", "curNavNode_" + (i++).toString(), "fa-pie-chart"));
+        c.push(new NavNode("Group 1 Item 1", "group1/nav1", "curNavNode_" + (i++).toString(), "insert_chart"));
+        c.push(new NavNode("Group 1 Item 2 with long title to show nav item line break", "group1/nav2", "curNavNode_" + (i++).toString(), "pie_chart", gc));
 
         this._root = new NavNode("root", "/", "curNavNode_" + (i++).toString());
-        this._root.Children.push(new NavNode("Home", "/home", "curNavNode_" + (i++).toString(), "fa-home"));
-        this._root.Children.push(new NavNode("Nav Group 1", "", "curNavNode_" + (i++).toString(), "fa-dashboard", c));
-        this._root.Children.push(new NavNode("Nav Item 1", "nav1", "curNavNode_" + (i++).toString(), "fa-file-text"));
+        this._root.Children.push(new NavNode("Home", "/home", "curNavNode_" + (i++).toString(), "home"));
+        this._root.Children.push(new NavNode("Nav Group 1", "", "curNavNode_" + (i++).toString(), "dashboard", c));
+        this._root.Children.push(new NavNode("Nav Item 1", "nav1", "curNavNode_" + (i++).toString(), "insert_drive_file"));
 
    }
 
