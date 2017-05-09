@@ -7,7 +7,7 @@ import { Subscription } from '../models/subscription';
 @Component({
     selector: 'subscriptionBadge',
     template: `
-        <li class="danger">
+        <li class="danger" mdTooltip="{{Label}}" mdTooltipShowDelay="1000">
             <a href="#" (click)="ToggleSubscription()" role="button" aria-expanded="false">
                 <md-icon class="icon">star_half</md-icon>
                 <span *ngIf="Count > 0">{{Count}}</span>
@@ -28,6 +28,11 @@ export class SubscriptionBadge implements OnInit {
     private _service: SubscriptionService;
     private _sidePanel: SidePanelService;
     private _subscriptions: Array<Subscription>;
+    private _label: string = "Updates";
+
+    @Input()
+    public get Label(): string { return this._label; }
+    public set Label(val: string) { this._label = val; }
 
     public get Count(): number {
         if (this._subscriptions != null) {

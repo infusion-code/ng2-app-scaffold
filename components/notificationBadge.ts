@@ -6,7 +6,7 @@ import { Message } from '../models/message';
 @Component({
     selector: 'notificationBadge',
     template: `
-        <li>
+        <li mdTooltip="{{Label}}" mdTooltipShowDelay="1000">
             <a href="#" (click)="ToggleNotification()">
                 <md-icon class="icon">comment</md-icon>
                 <span *ngIf="MessageCount > 0">{{MessageCount}}</span>

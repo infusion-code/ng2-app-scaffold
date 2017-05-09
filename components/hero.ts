@@ -10,7 +10,7 @@ import * as $ from 'jquery';
 @Component({
     selector: 'topnavhero',
     template: `
-        <li class="dropdown profile">
+        <li class="dropdown profile" mdTooltip="{{Hero ? Hero.Name : 'Profile'}}" mdTooltipShowDelay="1000">
             <a href="#" (click)="ToggleHero()" role="button" aria-expanded="false">
                 <span *ngIf="Hero">{{Hero.Name}}</span>
                 <span class="caret"></span>
