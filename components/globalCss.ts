@@ -122,7 +122,7 @@ import { ConfigService } from '../services/configService';
     `
         * {outline: none}
         html { height: 100% }
-        body { background-color: rgb(51,51,51); color: #fafafa; font-family: az_ea_font,wf_segoe-ui_normal,"Segoe UI","Segoe WP",Tahoma,Arial,sans-serif }
+        body { font-family: az_ea_font,wf_segoe-ui_normal,"Segoe UI","Segoe WP",Tahoma,Arial,sans-serif }
         body { padding-top: 0px; height: 100%; position: relative; font-size: 10pt;}
         .row > [class*='col-'] { margin-bottom: 25px;}
         .row.no-margin-bottom > [class*='col-'] { margin-bottom: 10px; }

@@ -5,56 +5,47 @@ import { Subscription } from '../models/subscription';
 @Component({
     selector: 'subscription-sidePanel',
     template: `
-        <ul class="danger">
-            <li class="title">
-                {{Label}} <span class="badge pull-right">{{Count}}</span>
-            </li>
-            <li *ngIf="Subscriptions != null && Subscriptions.length > 0">
-                <ul class="list-group notifications">
-                    <ng-container *ngFor="let s of Subscriptions">
-                        <a *ngIf="s.Detail == null || s.Detail == ''">
-                            <li class="list-group-item">
-                                <span class="badge {{s.BadgeClass}}">{{s.Count}}</span> <i class="fa {{s.FAIcon}} icon"></i> {{s.Label}}
-                            </li>
+        <md-list>
+            <h3 md-subheader>
+                <span md-line>{{Label}}</span>
+                <md-chip-list class="chip-list">
+                    <md-chip class="chip">{{Count}}</md-chip>
+                </md-chip-list>
+            </h3>
+            <md-list-item *ngIf="Subscriptions == null || Subscriptions.length == 0">
+                No new subscriptions
+            </md-list-item>
+            <ng-container *ngIf="Subscriptions != null && Subscriptions.length > 0">
+                <ng-container *ngFor="let s of Subscriptions">
+                    <md-list-item *ngIf="s.Detail == null || s.Detail == ''">
+                        <md-icon md-list-icon class="icon">{{s.MDIcon}}</md-icon>
+                        <span md-line>{{s.Label}}</span>
+                        <md-chip-list class="chip-list">
+                            <md-chip class="chip {{s.BadgeClass}}">{{s.Count}}</md-chip>
+                        </md-chip-list>
+                    </md-list-item>
+                    <md-nav-list *ngIf="s.Detail != null && s.Detail != ''">
+                        <a md-list-item [routerLink]=[s.Detail]>
+                            <md-icon md-list-icon class="icon">{{s.MDIcon}}</md-icon>
+                            <span md-line>{{s.Label}}</span>
+                            <md-chip-list class="chip-list">
+                                <md-chip class="chip {{s.BadgeClass}}">{{s.Count}}</md-chip>
+                            </md-chip-list>
                         </a>
-                        <a *ngIf="s.Detail != null && s.Detail != ''" [routerLink]=[s.Detail]>
-                            <li class="list-group-item">
-                                <span class="badge {{s.BadgeClass}}">{{s.Count}}</span> <i class="fa {{s.FAIcon}} icon"></i> {{s.Label}}
-                            </li>
-                        </a>
-                    </ng-container>
-                    <a *ngIf="MoreLink != null && MoreLink != ''" [routerLink]=[MoreLink]>
-                        <li class="list-group-item message">
-                            view more
-                        </li>
-                    </a>
-                </ul>
-            </li>
-        </ul>
+                    </md-nav-list>
+                </ng-container>
+                 <md-nav-list *ngIf="MoreLink != null && MoreLink != ''">
+                    <a md-list-item [routerLink]=[MoreLink]>View More</a>
+                </md-nav-list>
+            </ng-container>
+        </md-list>
     `,
     styles: [`
-        :host { float: left; }
-        :host > li, :host > li > a { display: block }
-        :host > li > a { font-family: 'Roboto Condensed', sans-serif; height: 60px; line-height: 60px; padding: 0px 20px 0px 20px; }
-        :host > li.danger > a { background-color: transparent; border-bottom: 4px solid #FA2A00; }
-        :host > li.danger.open > a { background-color: #FA2A00; color: #FFF; }
-        :host > li > a { font-family: 'Roboto Condensed', sans-serif; height: 60px; line-height: 60px; padding: 0px 20px 0px 20px; color: #fff }
-        .notifications.list-group {list-style: none; padding: 0;margin: 0; }
-        .notifications.list-group .list-group-item { min-width: 250px; padding: 8px; border: 0; border-bottom: 1px solid #EEE; cursor: default; }
-        .notifications.list-group .list-group-item .icon { margin-right: 5px; }
-        .notifications.list-group .badge { border-radius: 1em; }
-        .notifications.list-group > a[href] .list-group-item { cursor: pointer !important; }
-        .notifications.list-group > a[href] .list-group-item:hover { background-color: rgba(100,100,100,0.1); }
-        .title { font-family: 'Roboto Condensed', sans-serif; padding: 5px 10px; -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); }
-        .message { font-family: 'Roboto Condensed', sans-serif; text-align: center; padding: 10px 20px; color: #444; text-decoration: none; }
-        :host > li.danger.open > a { text-decoration: none; color: #ddd}
-        .title { cursor: default; }
-        .open > a { background-color: #575F68; }
-        :host > li.danger.open .danger { border-color: #FA2A00; }
-        :host > li.danger.open .danger .title { background-color: #FA2A00; color: #FFF; }
-        :host > li.danger.open .danger .title .badge { background-color: #FFF; color: #FA2A00; }
-        :host .badge.success { background-color: green }
-        :host .badge.danger { background-color: red }
+        h3 .chip-list { float: right; position: relative; top: -3px; }
+        .chip-list .chip { padding: 4px 8px; }
+        .success { background-color: green; }
+        .danger { background-color: red; }
+        .icon { padding: 0 !important; }
     `]
 })
 export class SubscriptionSidePanel implements OnInit {

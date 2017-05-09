@@ -7,7 +7,7 @@ import { Subscription } from '../models/subscription';
 @Component({
     selector: 'subscriptionBadge',
     template: `
-        <li class="dropdown danger">
+        <li class="danger">
             <a href="#" (click)="ToggleSubscription()" role="button" aria-expanded="false">
                 <md-icon class="icon">star_half</md-icon>
                 <span *ngIf="Count > 0">{{Count}}</span>
@@ -21,9 +21,6 @@ import { Subscription } from '../models/subscription';
         :host > li.danger > a { background-color: transparent; border-bottom: 4px solid #FA2A00; }
         :host > li.danger.open > a { background-color: #FA2A00; color: #FFF; }
         :host > li > a { font-family: 'Roboto Condensed', sans-serif; height: 60px; line-height: 60px; padding: 0px 20px 0px 20px; color: #fff }
-        :host > li.danger.open .dropdown-menu.danger { border-color: #FA2A00; }
-        :host > li.danger.open .dropdown-menu.danger .title { background-color: #FA2A00; color: #FFF; }
-        :host > li.danger.open .dropdown-menu.danger .title .badge { background-color: #FFF; color: #FA2A00; }
         .icon { font-size: 20px; position: relative; top: 4px; left: 4px; }
     `]
 })

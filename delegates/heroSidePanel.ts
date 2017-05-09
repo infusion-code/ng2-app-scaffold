@@ -3,68 +3,28 @@ import { Router } from '@angular/router';
 import { HeroService } from '../services/hero';
 import { DelegateService } from '../services/delegateService';
 import { Hero } from '../models/hero';
-import * as $ from 'jquery';
 
 @Component({
     selector: 'hero-sidePanel',
     template: `
-        <ul class="hero">
-            <li *ngIf="!_hasDelegate && Hero" class="profile-img">
-                <img src="{{Hero.Picture}}" class="profile-img">
-            </li>
-            <li *ngIf="!_hasDelegate">
-                <div class="profile-info">
-                    <h4 class="username" *ngIf="Hero">{{Hero.Name}}</h4>
+        <ng-container *ngIf="!_hasDelegate">
+            <md-card>
+                <img md-card-image *ngIf="Hero" src="{{Hero.Picture}}">
+                <md-card-content>
+                    <h4 *ngIf="Hero">{{Hero.Name}}</h4>
                     <p><span *ngIf="Hero">{{Hero.Email}}</span></p>
-                    <div *ngIf="(Hero && Hero.Profile) || SupportsLogout" class="btn-group margin-bottom-2x" role="group">
-                        <button *ngIf="Hero && Hero.Profile" type="button" class="btn btn-default" (click)="ShowProfile()"><i class="fa fa-user"></i> Profile</button>
-                        <button *ngIf="SupportsLogout" type="button" data-toggle="modal" data-target="#logoutModal" class="btn btn-default" (click)="Logout()"><i class="fa fa-sign-out"></i> Logout</button>
-                    </div>
-                </div>
-            </li>
-            <ng-container *ngIf="_hasDelegate">
-                <delegate-control [id]="_delegateId"></delegate-control>
-            </ng-container>
-        </ul>
-        <!--<div class="modal fade" id="logoutModal" role="dialog">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Logout confirmation</h4>
-                </div>
-                <div class="modal-body">
-                  <p>{{LogoutConfirmation}}</p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal" (click)="PostLogoutRedirect()">Close</button>
-                </div>
-              </div>
-            </div>
-        </div>-->
+                </md-card-content>
+                <md-card-actions>
+                    <button md-button *ngIf="Hero && Hero.Profile" (click)="ShowProfile()"><md-icon>account_circle</md-icon> Profile</button>
+                    <button md-button *ngIf="SupportsLogout" (click)="Logout()"><md-icon>exit_to_app</md-icon> Logout</button>
+                </md-card-actions>
+            </md-card>
+        </ng-container>
+        <ng-container *ngIf="_hasDelegate">
+            <delegate-control [id]="_delegateId"></delegate-control>
+        </ng-container>
     `,
     styles: [`
-        :host { float: left; }
-        :host > li, :host > li > a {display: block }
-        :host > li > a { font-family: 'Roboto Condensed', sans-serif; height: 60px; line-height: 60px; padding: 0px 20px 0px 20px; }
-        .profile-info { color: #444; }
-        .hero { padding: 0; border: 0; border-bottom-left-radius: 2px; border-bottom-right-radius: 2px; animation-duration: 0.4s; -webkit-animation-duration: 0.4s; z-index: -1; position: absolute; }
-        .hero .notifications.list-group {list-style: none; padding: 0;margin: 0; }
-        .hero .notifications.list-group .list-group-item { min-width: 250px; padding: 8px; border: 0; border-bottom: 1px solid #EEE; }
-        .hero .notifications.list-group .list-group-item .icon { margin-right: 5px; }
-        .hero .notifications.list-group .badge { border-radius: 1em; }
-        .hero .notifications.list-group .list-group-item:last-child { border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; }
-        .hero .notifications.list-group .list-group-item:first-child { border-top-right-radius: 0px; border-top-left-radius: 0px; }
-        .hero .notifications.list-group a.list-group-item:hover { cursor: pointer; }
-        .hero { width: 305px; padding-bottom: 0px; text-align: center; }
-        .hero li.profile-img { padding: 0px; max - height: 300px; overflow: hidden;}
-        .hero li.profile-img img.profile-img { width: 100%; height: auto; margin: 0px; border: 0;}
-        .hero .profile-info { font-family: 'Roboto Condensed', sans-serif; padding: 15px; }
-        .hero .profile-info .username { font-size: 1.8em; }
-        .hero > a { font-family: 'Roboto Condensed', sans-serif; height: 60px; line-height: 60px; padding: 0px 20px 0px 20px; color: white; text-decoration: none; }
-        .hero > a:hover { text-decoration: none; color: #ddd}
-        .hero.open > a { background-color: #575F68; }
-        .modal-dialog { color: #444; }
     `]
 })
 export class HeroSidePanel implements OnInit {
@@ -88,9 +48,7 @@ export class HeroSidePanel implements OnInit {
     private Logout() {
         if (!this.SupportsLogout) return;
 
-        // relocate the model dialog content below the body tag to prevent z-index issues 
-        // with bootstrap
-        $('#logoutModal').appendTo("body")
+        // TODO: Implement logout using Material Design
 
         this._heroService.Logout().then(s => {
             this._logoutConfirmation = s;

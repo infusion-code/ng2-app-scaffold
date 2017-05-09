@@ -5,43 +5,31 @@ import { Message } from '../models/message';
 @Component({
     selector: 'notification-sidePanel',
     template: `
-        <ul>
-            <li class="title">
-                {{Label}} <span class="badge pull-right">{{MessageCount}}</span>
-            </li>
-            <li *ngIf="Messages == null || Messages.length == 0" class="message">
+        <md-list>
+            <h3 md-subheader>
+                <span md-line>{{Label}}</span>
+                <md-chip-list class="chip-list">
+                    <md-chip class="chip">{{MessageCount}}</md-chip>
+                </md-chip-list>
+            </h3>
+            <md-list-item *ngIf="Messages == null || Messages.length == 0">
                 No new notifications
-            </li>
+            </md-list-item>
             <ng-container *ngIf="Messages != null && Messages.length > 0">
-                <ul class="list-group notifications">
-                    <ng-container *ngFor="let m of _messages">
-                        <a *ngIf="m.Detail == null || m.Detail == ''">
-                            <li class="list-group-item message">
-                                {{m.Title}}
-                            </li>
-                        </a>
-                        <a *ngIf="m.Detail != null && m.Detail != ''" [routerLink]=[m.Detail]>
-                            <li class="list-group-item message">
-                                {{m.Title}}
-                            </li>
-                        </a>
-                    </ng-container>
-                </ul>
+                <ng-container *ngFor="let m of _messages">
+                    <md-list-item *ngIf="m.Detail == null || m.Detail == ''">
+                        {{m.Title}}
+                    </md-list-item>
+                    <md-nav-list *ngIf="m.Detail != null && m.Detail != ''">
+                        <a md-list-item [routerLink]=[m.Detail]>{{m.Title}}</a>
+                    </md-nav-list>
+                </ng-container>
             </ng-container>
-        </ul>
+        </md-list>
     `,
     styles: [`
-        .notifications.list-group {list-style: none; padding: 0;margin: 0; }
-        .notifications.list-group .list-group-item { min-width: 175px; padding: 8px; border: 0; border-bottom: 1px solid #EEE; }
-        .notifications.list-group > a .list-group-item { cursor: default }
-        .notifications.list-group > a[href] .list-group-item { cursor: pointer !important; }
-        .notifications.list-group > a[href] .list-group-item:hover { background-color: rgba(100,100,100,0.1); }
-        .title { font-family: 'Roboto Condensed', sans-serif; padding: 5px 10px; -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); color: #444}
-        .message { font-family: 'Roboto Condensed', sans-serif; text-align: center; padding: 10px 20px; color: #444; text-decoration: none; }
-        a:hover { text-decoration: none; color: #ddd}
-        a { background-color: #575F68; }
-        .title { cursor: default; }
-        .icon { font-size: 16px; position: relative; top: 4px; left: 4px; }
+        .chip-list { float: right; position: relative; top: -3px; }
+        .chip-list .chip { padding: 4px 8px; }
     `]
 })
 export class NotificationSidePanel implements OnInit {

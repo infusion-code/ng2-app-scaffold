@@ -11,14 +11,13 @@ import { ConfigService } from '../services/configService';
                 <!--<current-nav [HomeLabel]="Title" [HomeIcon]="AppIcon"></current-nav>-->
                 <!-- Main Content -->
                 <div class="main-content">
-                    <content></content>
+                    <content [Copyright]="Copyright" [Version]="Version" [VersionNotes]="ReleaseNotes"></content>
                 </div>
             </div>
-            <app-footer [Copyright]="Copyright" [Version]="Version" [VersionNotes]="ReleaseNotes" ></app-footer>
         </div>
     `,
     styles: [`
-        .app-container { height: 100%; position: relative; padding-bottom: 60px; }
+        .app-container { height: 100%; position: relative; }
         .app-container .content-container { height: 100%; margin-right: 0; margin-left: 0; }
         .container-fluid > .navbar-collapse, .container-fluid > .navbar-header, .container > .navbar-collapse, .container > .navbar-header { margin-left: -15px; margin-right: -15px; }
         .page-title { font-family: 'Roboto Condensed', sans-serif;margin-left: -10px;margin-right: -10px; padding: 15px 10px; margin-bottom: 0px; height: auto; }

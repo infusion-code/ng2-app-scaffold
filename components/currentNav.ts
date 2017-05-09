@@ -50,12 +50,7 @@ import { DelegateService } from '../services/delegateService';
     // `,
     styles: [`
         .navbar { z-index: 10001; padding-left: 60px; -webkit-transition: all 0.25s; transition: all 0.25s; }
-        .navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand { height: 60px; line-height: 60px; margin-left: 0px; font-family: 'Roboto Condensed', sans-serif; font-weight: 400; padding: 0; font-size: 1.5em; }
         .side-menu {overflow-y: auto;z-index: 100000; position: fixed; width: 60px;height: 100%; -webkit-transition: all 0.25s; transition: all 0.25s; }
-        .side-menu .navbar-header {width: 100%; border-bottom: 0px solid #e7e7e7; background-color: #22A7F0; color: #fff;  margin-bottom: 4px; }
-        .side-menu .navbar-header .navbar-brand { width: 455px;line-height: 60px; height: 60px;padding: 0; width: 100%;overflow: hidden; font-family: 'Roboto Condensed', sans-serif; }
-        .side-menu .navbar-header .navbar-brand .icon { width: 60px; text-align: center; display: inline-block; }
-        .side-menu .navbar-header .navbar-brand .title { margin-left: -10px; display: none; }
         .side-menu .navbar-header .navbar-expand-toggle { position: absolute; right: 0; width: 60px; height: 60px; background-color: transparent; border: 0px; -moz-transition: all 0.25s linear;-webkit-transition: all 0.25s linear; transition: all 0.25s linear;opacity: 0.75; }
         .side-menu .navbar { border: none; padding-left: 0px; border-radius: 0px; }
         .side-menu /deep/ .navbar-nav { width: 100% }
@@ -76,7 +71,6 @@ import { DelegateService } from '../services/delegateService';
         .side-menu:hover /deep/ .navbar-nav li.dropdown > a:after { font-family: FontAwesome; content: "\\f107"; position: absolute; right: 1em; }
         .side-menu:hover /deep/ .navbar-nav li.dropdown > div > .expander { display: block }
         .side-menu:hover /deep/ .panel-collapse.in { display: block; }
-        .side-menu.sidebar-inverse { background-color: #353d47; box-shadow: 1px 1px 2px rgba(0,0,0,0.08); color: #fff; }
         .side-menu.sidebar-inverse .navbar {  background-color: inherit;  border-bottom: 0px; -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none; }
         .side-menu.sidebar-inverse .navbar /deep/ li { border-left: 0; }
         .side-menu.sidebar-inverse .navbar /deep/ li > a, .side-menu.sidebar-inverse .navbar /deep/ li.dropdown > div > a { color: #fff; }

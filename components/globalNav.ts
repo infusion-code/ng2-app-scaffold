@@ -18,12 +18,14 @@ import { DelegateService } from '../services/delegateService';
                 <div class="navbar-header">
                     <breadcrumb></breadcrumb>
                     <button *ngIf="ShowSubscriptions || ShowHero || ShowNotifications" type="button" class="navbar-right-expand-toggle pull-right visible-xs" (click)="ToggleTopMenu()">
-                        <div><i class="fa fa-th icon"></i></div>
+                        <div>
+                            <md-icon>apps</md-icon>
+                        </div>
                     </button>
                 </div>
                 <ul *ngIf="ShowSubscriptions || ShowHero || ShowNotifications" [ngClass]="{'expanded' : _topMenuToggled}"  class="nav navbar-nav navbar-right">
-                    <button *ngIf="ShowSubscriptions || ShowHero || ShowNotifications" type="button" [ngClass]="{'fa-rotate-90': _topMenuToggled}" class="navbar-right-expand-toggle pull-right visible-xs" (click)="ToggleTopMenu()">
-                        <i class="fa fa-times icon"></i>
+                    <button *ngIf="ShowSubscriptions || ShowHero || ShowNotifications" type="button" class="navbar-right-expand-toggle pull-right visible-xs" (click)="ToggleTopMenu()">
+                        <md-icon>close</md-icon>
                     </button>
                     <ng-container *ngIf="!_hasDelegate">
                         <notificationBadge *ngIf="ShowNotifications"></notificationBadge>

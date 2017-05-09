@@ -31,9 +31,9 @@ export class SubscriptionService {
         else {
             this._subscriptions.splice(0, this._subscriptions.length);
         }
-        this._subscriptions.push(new Subscription("New Alerts", 5, "fa-exclamation-circle", "", "/home"));
-        this._subscriptions.push(new Subscription("New Tasks", 3, "fa-check", "success"));
-        this._subscriptions.push(new Subscription("Unread Messages", 18, "fa-comments", "danger"));
+        this._subscriptions.push(new Subscription("New Alerts", 5, "priority_hight", "", "/home"));
+        this._subscriptions.push(new Subscription("New Tasks", 3, "check", "success"));
+        this._subscriptions.push(new Subscription("Unread Messages", 18, "comment", "danger"));
 
    }
 
