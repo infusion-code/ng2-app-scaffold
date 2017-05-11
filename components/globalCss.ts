@@ -327,11 +327,7 @@ import { ConfigService } from '../services/configService';
         .landing-page .navbar {padding-left: 0px; background-color: transparent; box-shadow: none; }
         .landing-page .navbar .navbar-right { position: relative; right: 0; }
         .landing-page .navbar .navbar-header { border-bottom: 0px solid #e7e7e7; }
-        .landing-page .navbar .navbar-header .navbar-brand { width: 45px; line-height: 60px; height: 60px; padding: 0; width: 100%; overflow: hidden; padding-left: 0px; font-family: 'Roboto Condensed', sans-serif; }
-        .landing-page .navbar .navbar-header .navbar-brand .icon { width: 50px; text-align: center; display: inline-block; }
-        .landing-page .navbar .navbar-header .navbar-brand .title { margin-left: -10px; display: inline-block; }
         .landing-page .navbar .navbar-header .navbar-expand-toggle { position: absolute; right: 0; width: 60px; height: 60px; background-color: transparent; border: 0px;-moz-transition: all 0.25s linear; -webkit-transition: all 0.25s linear;transition: all 0.25s linear;opacity: 0.75; }
-        @media only screen and (max-width: 768px) { .landing-page .navbar .navbar-header .navbar-brand { padding-left: 15px; } }
         .row-example > [class*="col-"] { margin-bottom: 0px; }
     `,`
         /* CUSTOMIZE THE NAVBAR

@@ -10,14 +10,21 @@ import { DelegateService } from '../services/delegateService';
                     <button *ngIf="ShowLeftNavToggle"  type="button" [ngClass]="{'fa-rotate-90': _sideMenuToggled }" class="navbar-expand-toggle" (click)="ToggleSideMenu()">
                         <i class="fa fa-bars icon"></i>
                     </button>
-                    <span *ngIf="!ShowLeftNavToggle" class="navbar-spacer">&nbsp;</span>                    
+                    <div class="navbar-top-brand">
+                        <a *ngIf="!_hasBrandDelegate" class="navbar-brand" routerLink="/">
+                            <div class="icon {{HomeIcon}}"></div>
+                            <div class="title hidden-xs">{{HomeLabel}}</div>
+                        </a>
+                        <ng-container *ngIf="_hasBrandDelegate">
+                            <delegate-control [id]="_brandDelegateId"></delegate-control>
+                        </ng-container>
+                    </div>
                     <ng-container *ngIf="!_hasBreadcrumbDelegate">
                         <breadcrumb></breadcrumb>
                     </ng-container>
                     <ng-container *ngIf="_hasBreadcrumbDelegate">
                         <delegate-control [id]="_breadcrumbDelegateId"></delegate-control>
                     </ng-container>
-
                     <button *ngIf="ShowSubscriptions || ShowHero || ShowNotifications" type="button" class="navbar-right-expand-toggle pull-right visible-xs" (click)="ToggleTopMenu()">
                         <div><i class="fa fa-th icon"></i></div>
                     </button>
@@ -39,17 +46,21 @@ import { DelegateService } from '../services/delegateService';
         </nav>
     `,
     styles: [`
-        .navbar { z-index: 10001; padding-left: 60px; -webkit-transition: all 0.25s; transition: all 0.25s; }
-        .navbar.navbar-fixed-top { border-bottom: 1px solid black; }
+        .navbar { z-index: 10001; padding-left: 0px; -webkit-transition: all 0.25s; transition: all 0.25s; }
+        .navbar.navbar-fixed-top { border-bottom: 0px solid black; }
         .navbar > .container, .navbar > .container-fluid { z-index: 10001; }
-        .navbar > .container .navbar-expand-toggle, .navbar > .container-fluid .navbar-expand-toggle { width: 60px; height: 60px; background-color: transparent; border: 0px; float: left; -moz-transition: all 0.25s linear; -webkit-transition: all 0.25s linear; transition: all 0.25s linear; opacity: 0.75;}
+        .navbar > .container .navbar-expand-toggle, .navbar > .container-fluid .navbar-expand-toggle { width: 61px; height: 60px; background-color: transparent; border: 0px; float: left; -moz-transition: all 0.25s linear; -webkit-transition: all 0.25s linear; transition: all 0.25s linear; opacity: 0.75;}
         .navbar > .container .navbar-expand-toggle .icon, .navbar > .container-fluid .navbar-expand-toggle .icon { font-size: 1.4em; }
         .navbar > .container .navbar-right-expand-toggle, .navbar > .container-fluid .navbar-right-expand-toggle { width: 60px; height: 60px; background-color: #000; border: 0px; position: absolute; right: 0; -moz-transition: all 0.25s linear; -webkit-transition: all 0.25s linear; transition: all 0.25s linear;  color: #fff; }
         .navbar > .container .navbar-right-expand-toggle > div, .navbar > .container-fluid .navbar-right-expand-toggle > div { opacity: 0.75}
         .navbar > .container .navbar-right-expand-toggle .icon, .navbar > .container-fluid .navbar-right-expand-toggle .icon { font-size: 1.4em; }
         .navbar .navbar-nav /deep/ .dropdown-menu, .navbar.navbar-default .navbar-nav /deep/ .dropdown-menu { background-color: #F9F9F9; border-color: #E4E4E4 }
         .navbar .navbar-right { background-color: #000;}
-        :host-context(.app-container.expanded .content-container) .navbar-top { padding-left: 250px; }
+        .navbar-default .navbar-top-brand { float: left; padding: 0 10px 0 10px; background-color: #444; margin-right: 10px; color: #fff }
+        .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus { color: #fff }
+        .navbar-default .navbar-brand { height: 60px; line-height: 60px; margin-left: 0px; font-family: 'Roboto Condensed', sans-serif; font-weight: 500; padding: 0; font-size: 1.5em; color: #fff; }
+        .navbar-default .navbar-brand .icon { text-align: center; display: inline-block; padding: 0 15px }
+        .navbar-default .navbar-brand .title { margin-left: 0px; display: inline-block; padding: 0 10px 0 0; }
         .container-fluid > .navbar-collapse, .container-fluid > .navbar-header, .container > .navbar-collapse, .container > .navbar-header { margin-left: -15px; margin-right: -15px; }
         @media (max-width: 768px) {
           .navbar { padding-left: 0; }
@@ -86,9 +97,21 @@ export class GlobalNav {
     private _sideMenuToggled: boolean = true;
     private _topMenuToggled: boolean = false;
     private _hasNotificationDelegate: boolean = false;
+    private _hasBrandDelegate:boolean = false;
     private _hasBreadcrumbDelegate: boolean = false;
+    private _brandDelegateId:string = "global-nav.brand";
     private _notificationDelegateId: string = "global-nav.notifications";
     private _breadcrumbDelegateId: string = "global-nav.breadcrumb"
+    private _homeLabel: string = "Home";
+    private _homeIcon: string = "fa fa-paper-plane";
+
+    @Input()
+        public get HomeLabel(): string { return this._homeLabel; }
+        public set HomeLabel(val: string) { this._homeLabel = val; }
+
+    @Input()
+        public get HomeIcon(): string { return this._homeIcon; }
+        public set HomeIcon(val: string) { this._homeIcon = val; }
 
     @Input()
         public get ShowLeftNavToggle(): boolean { return this._showLeftNavToggle; }
