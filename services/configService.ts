@@ -32,7 +32,7 @@ export class ConfigService {
 
     constructor() {
         this._title = "App Title";
-        this._faIcon = "fa-paper-plane-o";
+        this._faIcon = "fa fa-paper-plane-o";
         this._showLeftNavToggle = true;
         this._showSubscriptions = true;
         this._showHero = true;
