@@ -5,15 +5,12 @@ import { DelegateService } from '../services/delegateService';
 @Component({
     selector: 'global-nav',
     template: `
-        <md-toolbar color="primary" [ngClass]="{'expanded' : _topMenuToggled}">
-            <div class="sideNavToggle" [ngClass]="{'expandSideNav' : _sideMenuToggled}" (click)="ToggleSideNav()">
+        <md-toolbar class="globalNav" color="primary" [ngClass]="{'expanded' : _topMenuToggled}">
+            <div class="sideNavToggle icon" [ngClass]="{'expandSideNav' : _sideMenuToggled}" (click)="ToggleSideNav()">
                 <md-icon>menu</md-icon>
             </div>
             <div class="icon-title-container">
-                <span *ngIf="!_hasNavHeaderDelegate" class="navbar-current-nav-toggle visible-xs" (click)="ToggleSideMenu()">
-                    <md-icon class="icon">menu</md-icon>
-                </span>
-                <span class="icon-title hidden-xs" *ngIf="!_hasNavHeaderDelegate" routerLink="/">
+                <span class="icon-title" *ngIf="!_hasNavHeaderDelegate" routerLink="/">
                     <md-icon class="icon">{{HomeIcon}}</md-icon>
                     {{HomeLabel}}
                 </span>
@@ -58,14 +55,16 @@ import { DelegateService } from '../services/delegateService';
         .navbar-current-nav-toggle { cursor: pointer; }
         .navbar-right-expand-toggle,
         .navbar-right-collapse-toggle { line-height: 70px; cursor: pointer; width: 64px; height: 64px; border: 0px; position: absolute; right: 0; -moz-transition: all 0.25s linear; -webkit-transition: all 0.25s linear; transition: all 0.25s linear; }
-        .sideNavToggle { cursor: pointer; position: relative; top: 4px;  -moz-transition: all 0.25s linear; -webkit-transition: all 0.25s linear; transition: all 0.25s linear; }
+        .sideNavToggle { cursor: pointer; -moz-transition: all 0.25s linear; -webkit-transition: all 0.25s linear; transition: all 0.25s linear; }
         .expandSideNav { -webkit-transform: rotate(90deg); -moz-transform: rotate(90deg); -o-transform: rotate(90deg); -ms-transform: rotate(90deg); transform: rotate(90deg); top: 0px; }
         @media (max-width: 768px) {
-            .nav-right { position: absolute; top: 0; right: -100%; height: 100%; width: 100%; -moz-transition: all 0.25s linear; -webkit-transition: all 0.25s linear; transition: all 0.25s linear; float: right!important; }
-            .expanded .icon-title-container { left: -100%; }
-            .expanded .nav-right { right: 0; }
-            .expanded .navbar-right-expand-toggle { right: 100%; }
-            .visible-xs { display: block!important; }
+            .globalNav { overflow: hidden; }
+            .nav-right { position: absolute; top: 0; left: 0; display: none; height: 100%; width: 100%; -moz-transition: all 0.25s linear; -webkit-transition: all 0.25s linear; transition: all 0.25s linear; float: right!important; }
+            .expanded .nav-right { display: block; }
+            .expanded .navbar-right-expand-toggle { display: none !important; }
+            .expanded .icon-title-container { display: none; }
+            .expanded .sideNavToggle { display: none; }
+            .visible-xs { display: block !important; }
         }
     `]
 })

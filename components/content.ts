@@ -29,6 +29,9 @@ import { Component, Input, OnInit } from '@angular/core';
         .router-outlet { padding: 15px; }
 
         @media (max-width: 498px) {
+            .sideNav { width: 0px; min-width: 0px; }
+            .sideNav-container.expandSideNav .sideNav { width: 100%; }
+            .sideNav-container.expandSideNav .mat-sidenav-content { margin-left: 0px; }
             .sidepanel { width: 100%; }
         }
     `]

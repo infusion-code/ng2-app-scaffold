@@ -28,7 +28,10 @@ import { ConfigService } from '../services/configService';
         .sub-title .description { font-family: 'Roboto Condensed', sans-serif; font-size: 0.9em; }
         .sub-title .action .btn { padding: 0 0.5em; }
         @media (max-width: 768px) {
-          .body-content { padding-top: 50px; }
+            .body-content { padding-top: 50px; }
+        }
+        @media (max-width: 600px) {
+            .app-container .content-container { height: calc(100% - 50px); }
         }
     `],
 })
