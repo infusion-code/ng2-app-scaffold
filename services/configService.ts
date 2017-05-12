@@ -37,7 +37,7 @@ export class ConfigService {
         this._showSubscriptions = true;
         this._showHero = true;
         this._showNotifications = true;
-        this._expandCurrentNavOnLoad = true;
+        this._expandCurrentNavOnLoad = false;
         this._pushContentOnCurrentNavHover = true;
         this._useGlobalCss = true;
         this._copyright = "Copyright © 2010-2017, Infusion.";
