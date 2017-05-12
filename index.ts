@@ -45,13 +45,14 @@ import { CurrentNavProvider } from './services/currentNavProvider';
 import { ConfigService, Guid } from './services/configService';
 import { LocalStorageService, SessionStorageService } from './services/storageService';
 import { DelegateService, IDelegateControlMetadata } from './services/delegateService';
+import { SideNavService } from './services/sideNav';
 import { SidePanelService } from './services/sidePanel';
 
 // module imports
 import { AppMaterialModule } from './modules/app-material';
 
 // global exports
-export { NavNode, Hero, Message, Subscription, DelegateControl, IDelegateControlMetadata, AppComponent, Breadcrumb, CurrentNav, GlobalNav, Footer, HeroComponent, NotificationBadge, SubscriptionBadge, BreadcrumbService, HeroService, NotificationsService, SubscriptionService, CurrentNavProvider, ConfigService, DelegateService, SessionStorage, LocalStorage, SessionStorageService, LocalStorageService, Guid, Content, SidePanelService, PanelDetails, NotificationSidePanel, SubscriptionSidePanel, HeroSidePanel }
+export { NavNode, Hero, Message, Subscription, DelegateControl, IDelegateControlMetadata, AppComponent, Breadcrumb, CurrentNav, GlobalNav, Footer, HeroComponent, NotificationBadge, SubscriptionBadge, BreadcrumbService, HeroService, NotificationsService, SubscriptionService, CurrentNavProvider, ConfigService, DelegateService, SessionStorage, LocalStorage, SessionStorageService, LocalStorageService, Guid, Content, SidePanelService, PanelDetails, NotificationSidePanel, SubscriptionSidePanel, HeroSidePanel, SideNavService }
 
 // module definition
 @NgModule({
@@ -67,7 +68,7 @@ export class AppScaffoldModule {
         delegates.RegisterDelegate(<IDelegateControlMetadata>{ controlId: 'subscription', selector: '', template: '<subscription-sidePanel [MoreLink]="\'/home\'"></subscription-sidePanel>', imports: [ AppScaffoldModule ] });
     }
 
-    static forRoot(breadcrumb?: BreadcrumbService, hero?: HeroService, notification?: NotificationsService, subscriptions?: SubscriptionService, currentNavProvider?: CurrentNavProvider, configService?: ConfigService, delegateService?: DelegateService, sidePanelService?: SidePanelService): ModuleWithProviders {
+    static forRoot(breadcrumb?: BreadcrumbService, hero?: HeroService, notification?: NotificationsService, subscriptions?: SubscriptionService, currentNavProvider?: CurrentNavProvider, configService?: ConfigService, delegateService?: DelegateService, sidePanelService?: SidePanelService, sideNavService?: SideNavService): ModuleWithProviders {
         return {
             ngModule: AppScaffoldModule,
             providers: [
@@ -78,7 +79,8 @@ export class AppScaffoldModule {
                 currentNavProvider ? { provide: CurrentNavProvider, useValue: currentNavProvider } : CurrentNavProvider,
                 configService ? { provide: ConfigService, useValue: configService } : ConfigService,
                 delegateService ? { provide: DelegateService, useValue: delegateService } : DelegateService,
-                sidePanelService ? { provide: SidePanelService, useValue: sidePanelService } : SidePanelService
+                sidePanelService ? { provide: SidePanelService, useValue: sidePanelService } : SidePanelService,
+                sideNavService ? { provide: SideNavService, useValue: sideNavService } : SideNavService
             ]
         };
     }

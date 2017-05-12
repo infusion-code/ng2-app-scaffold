@@ -23,7 +23,7 @@ import { NavNode } from '../models/navNode';
     `,
     styles: [`
         .collapsed { display: none; }
-        .child_nodes { padding-left: 30px; }
+        .child_nodes { padding-left: 40px; }
         .icon { position: relative; top: -2px; font-size: 19px; }
     `]
 })

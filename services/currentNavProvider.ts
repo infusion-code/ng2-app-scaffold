@@ -18,7 +18,6 @@ export class CurrentNavProvider {
         });
     }
 
-
     constructor() {}
 
     protected GetData() {

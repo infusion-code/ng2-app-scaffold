@@ -1,10 +1,14 @@
-﻿import { Component, Input, Output, EventEmitter } from '@angular/core';
+﻿import { SideNavService } from './../services/sideNav';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { DelegateService } from '../services/delegateService';
 
 @Component({
     selector: 'global-nav',
     template: `
         <md-toolbar color="primary" [ngClass]="{'expanded' : _topMenuToggled}">
+            <div class="sideNavToggle" [ngClass]="{'expandSideNav' : _sideMenuToggled}" (click)="ToggleSideNav()">
+                <md-icon>menu</md-icon>
+            </div>
             <div class="icon-title-container">
                 <span *ngIf="!_hasNavHeaderDelegate" class="navbar-current-nav-toggle visible-xs" (click)="ToggleSideMenu()">
                     <md-icon class="icon">menu</md-icon>
@@ -46,7 +50,7 @@ import { DelegateService } from '../services/delegateService';
         </md-toolbar>
     `,
     styles: [`
-        .icon-title-container { position: absolute; left: 16px; -moz-transition: all 0.25s linear; -webkit-transition: all 0.25s linear; transition: all 0.25s linear; }
+        .icon-title-container { position: absolute; left: 60px; -moz-transition: all 0.25s linear; -webkit-transition: all 0.25s linear; transition: all 0.25s linear; }
         .icon-title { cursor: pointer; }
         .icon { position: relative; top: 3px; }
         .nav-container { width: 100%; }
@@ -54,6 +58,8 @@ import { DelegateService } from '../services/delegateService';
         .navbar-current-nav-toggle { cursor: pointer; }
         .navbar-right-expand-toggle,
         .navbar-right-collapse-toggle { line-height: 70px; cursor: pointer; width: 64px; height: 64px; border: 0px; position: absolute; right: 0; -moz-transition: all 0.25s linear; -webkit-transition: all 0.25s linear; transition: all 0.25s linear; }
+        .sideNavToggle { cursor: pointer; position: relative; top: 4px;  -moz-transition: all 0.25s linear; -webkit-transition: all 0.25s linear; transition: all 0.25s linear; }
+        .expandSideNav { -webkit-transform: rotate(90deg); -moz-transform: rotate(90deg); -o-transform: rotate(90deg); -ms-transform: rotate(90deg); transform: rotate(90deg); top: 0px; }
         @media (max-width: 768px) {
             .nav-right { position: absolute; top: 0; right: -100%; height: 100%; width: 100%; -moz-transition: all 0.25s linear; -webkit-transition: all 0.25s linear; transition: all 0.25s linear; float: right!important; }
             .expanded .icon-title-container { left: -100%; }
@@ -63,7 +69,7 @@ import { DelegateService } from '../services/delegateService';
         }
     `]
 })
-export class GlobalNav {
+export class GlobalNav implements OnInit {
     private _homeLabel: string = "App Title";
     private _homeIcon: string = "domain";
     private _showHero: boolean = true;
@@ -75,38 +81,45 @@ export class GlobalNav {
     private _delegateId: string = "global-nav.notifications";
 
     @Input()
-        public get HomeLabel(): string { return this._homeLabel; }
-        public set HomeLabel(val: string) { this._homeLabel = val; }
+    public get HomeLabel(): string { return this._homeLabel; }
+    public set HomeLabel(val: string) { this._homeLabel = val; }
 
     @Input()
-        public get HomeIcon(): string { return this._homeIcon; }
-        public set HomeIcon(val: string) { this._homeIcon = val; }
+    public get HomeIcon(): string { return this._homeIcon; }
+    public set HomeIcon(val: string) { this._homeIcon = val; }
 
     @Input()
-        public get ShowHero(): boolean { return this._showHero; }
-        public set ShowHero(val: boolean) { this._showHero = val; }
+    public get ShowHero(): boolean { return this._showHero; }
+    public set ShowHero(val: boolean) { this._showHero = val; }
 
     @Input()
-        public get ShowNotifications(): boolean { return this._showNotifications; }
-        public set ShowNotifications(val: boolean) { this._showNotifications = val; }
+    public get ShowNotifications(): boolean { return this._showNotifications; }
+    public set ShowNotifications(val: boolean) { this._showNotifications = val; }
 
     @Input()
-        public get ShowSubscriptions(): boolean { return this._showSubscriptions; }
-        public set ShowSubscriptions(val: boolean) { this._showSubscriptions = val; }
+    public get ShowSubscriptions(): boolean { return this._showSubscriptions; }
+    public set ShowSubscriptions(val: boolean) { this._showSubscriptions = val; }
 
-    @Output()
-        public SideMenuToggled: EventEmitter<boolean> = new EventEmitter<boolean>();
+    @Input()
+    public get SideNavExpanded(): boolean { return this._sideMenuToggled; }
+    public set SideNavExpanded(val: boolean) { this._sideMenuToggled = val; }
 
-    constructor(delegates: DelegateService){
-        if(delegates.GetDelegate(this._delegateId)) this._hasDelegate = true;
+    constructor(private delegates: DelegateService, private sideNav: SideNavService) {
+        if (delegates.GetDelegate(this._delegateId)) this._hasDelegate = true;
     }
 
-    public ToggleSideMenu() {
-        this._sideMenuToggled = !this._sideMenuToggled;
-        this.SideMenuToggled.emit(this._sideMenuToggled);
+    ngOnInit() {
+        if (this.SideNavExpanded) {
+            this.sideNav.pin();
+        }
     }
 
-    public ToggleTopMenu() {
+    ToggleSideNav() {
+        this.SideNavExpanded = !this.SideNavExpanded;
+        this.sideNav.togglePin();
+    }
+
+    ToggleTopMenu() {
         this._topMenuToggled = !this._topMenuToggled;
     }
 }

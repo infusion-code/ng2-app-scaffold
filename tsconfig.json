@@ -38,6 +38,7 @@
         "services/currentNavProvider.ts",
         "services/hero.ts",
         "services/notifications.ts",
+        "services/sideNav.ts",
         "services/sidePanel.ts",
         "services/subscriptions.ts"
     ],

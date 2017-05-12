@@ -7,8 +7,7 @@ import { ConfigService } from '../services/configService';
         <global-css *ngIf="UseGlobalCss == true"></global-css>
         <div class='app-container' [ngClass]="{'expanded': _sideMenuExpanded }">
             <div class="row content-container">
-                <global-nav [HomeLabel]="Title" [HomeIcon]="AppIcon" [ShowSubscriptions]="ShowSubscriptions" [ShowHero]="ShowHero" [ShowNotifications]="ShowNotifications"></global-nav>
-                <!--<current-nav [HomeLabel]="Title" [HomeIcon]="AppIcon"></current-nav>-->
+                <global-nav [SideNavExpanded]="ExpandCurrentNavOnLoad" [HomeLabel]="Title" [HomeIcon]="AppIcon" [ShowSubscriptions]="ShowSubscriptions" [ShowHero]="ShowHero" [ShowNotifications]="ShowNotifications"></global-nav>
                 <!-- Main Content -->
                 <div class="main-content">
                     <content [Copyright]="Copyright" [Version]="Version" [VersionNotes]="ReleaseNotes"></content>
@@ -35,7 +34,6 @@ import { ConfigService } from '../services/configService';
 })
 export class AppComponent {
     private _config: ConfigService;
-    private _sideMenuExpanded:boolean = true;
 
     public get ShowLeftNavToggle(): boolean { return this._config.ShowLeftNavToggle; }
     public get ShowSubscriptions(): boolean { return this._config.ShowSubscriptions; }
