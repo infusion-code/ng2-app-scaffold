@@ -1,9 +1,9 @@
 ﻿export class NavNode {
-    private _title: string;
-    private _url: string;
-    private _id: string;
-    private _children: Array<NavNode>;
-    private _faIcon: string;
+    protected _title: string;
+    protected _url: string;
+    protected _id: string;
+    protected _children: Array<NavNode>;
+    protected _faIcon: string;
 
     public get Title():string { return this._title; }
     public get Url():string { return this._url; }
