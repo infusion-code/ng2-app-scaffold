@@ -1,4 +1,4 @@
-﻿import { Component, Input, OnInit } from '@angular/core';
+﻿import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { CurrentNavProvider } from '../services/currentNavProvider';
 import { NavNode } from '../models/navNode';
 
@@ -8,7 +8,7 @@ import { NavNode } from '../models/navNode';
         <ul class="nav navbar-nav" *ngIf="_root != null" id="parent-{{_root.Id}}">
                 <ng-container *ngFor="let n of _root.Children">
                     <li *ngIf="n.Children.length==0" class="{{n.Title.length > 25 ? 'multiline' : ''}}" [routerLinkActive]="['active']">
-                        <a [routerLink]="[n.Url]" id="{{n.Id}}">
+                        <a [routerLink]="[n.Url]" id="{{n.Id}}" (click)="OnNavigationSelectionChange(n.Url)">
                             <span class="icon fa {{n.FAIcon}} {{n.Title.length > 25 ? 'multiline' : ''}}"></span><span class="title {{n.Title.length > 25 ? 'multiline' : ''}}">{{n.Title}}</span>
                         </a>
                     </li>
@@ -17,7 +17,7 @@ import { NavNode } from '../models/navNode';
                             <span class="icon fa {{n.FAIcon}} {{n.Title.length > 25 ? 'multiline' : ''}}"></span><span class="title {{n.Title.length > 25 ? 'multiline' : ''}}">{{n.Title}}</span>
                         </a>
                         <div *ngIf="n.Url.length>0">
-                            <a [routerLink]="[n.Url]" id="{{n.Id}}">
+                            <a [routerLink]="[n.Url]" id="{{n.Id}}" (click)="OnNavigationSelectionChange(n.Url)">
                                 <span class="icon fa {{n.FAIcon}} {{n.Title.length > 25 ? 'multiline' : ''}}"></span><span class="title {{n.Title.length > 25 ? 'multiline' : ''}}">{{n.Title}}</span>
                             </a>
                             <a class="expander" data-toggle="collapse" [attr.data-target]="'#' + n.Id + '_dropdown'" [attr.data-parent]="'#parent-' + _root.Id">
@@ -27,7 +27,7 @@ import { NavNode } from '../models/navNode';
                         <!-- Dropdown -->
                         <div id="{{n.Id}}_dropdown" class="panel-collapse collapse">
                             <div class="panel-body">
-                                <navbar-vertical [Node]="n"></navbar-vertical>
+                                <navbar-vertical [Node]="n" (NavigationChange)="OnNavigationSelectionChange($event)"></navbar-vertical>
                             </div>
                         </div>
                     </li>
@@ -55,6 +55,9 @@ export class VerticalNavBar implements OnInit {
         private set Node(val: NavNode) { this._root = val; }
 
 
+    @Output()
+        public NavigationChange: EventEmitter<string> = new EventEmitter<string>();
+
     constructor(provider: CurrentNavProvider){
         this._provider = provider;
     }
@@ -64,6 +67,10 @@ export class VerticalNavBar implements OnInit {
             this._provider.Root.then(n => {
                 this._root = n;
             });
+    }
+
+    private OnNavigationSelectionChange(u: string){
+        this.NavigationChange.emit(u);
     }
 
 }

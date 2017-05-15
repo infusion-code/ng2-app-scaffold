@@ -8,7 +8,7 @@ import { ConfigService } from '../services/configService';
         <div class='app-container' [ngClass]="{'expanded': _sideMenuExpanded }">
             <div class="row content-container">
                 <global-nav [HomeLabel]="Title" [HomeIcon]="AppIcon" [ShowLeftNavToggle]="ShowLeftNavToggle" [ToggleCurrentNav]="_sideMenuExpanded || _sideMenuHovered" [ShowSubscriptions]="ShowSubscriptions" [ShowHero]="ShowHero" [ShowNotifications]="ShowNotifications" (SideMenuToggled)="ToggleSideMenu($event)"></global-nav>
-                <current-nav (SideMenuHoverChange)="HandleCurrentNavHoverChange($event)"></current-nav>
+                <current-nav (SideMenuHoverChange)="HandleCurrentNavHoverChange($event)" (NavigationChange)="OnNavigationChange($event)"></current-nav>
                 <!-- Main Content -->
                 <div class="container-fluid no-margin padding-top">
                     <router-outlet></router-outlet>
@@ -75,4 +75,12 @@ export class AppComponent {
             }
         }
     }
+
+    private OnNavigationChange(u:string){
+        if(!this._config.PushContentOnCurrentNavHover) this._sideMenuExpanded = false;
+        else{
+            if(!this._sideMenuToggled) this._sideMenuExpanded = false;
+        }
+    }
+
 }

@@ -10,7 +10,7 @@ import { DelegateService } from '../services/delegateService';
                     <ng-container *ngIf="_hasBeforeNavDelegate">
                         <delegate-control [id]="_delegateBeforeNavId"></delegate-control>
                     </ng-container>
-                    <navbar-vertical *ngIf="!_hasNavDelegate"></navbar-vertical>
+                    <navbar-vertical *ngIf="!_hasNavDelegate" (NavigationChange)="OnNavigationChange($event)"></navbar-vertical>
                     <ng-container *ngIf="_hasNavDelegate">
                         <delegate-control [id]="_delegateNavId"></delegate-control>
                     </ng-container>                   
@@ -82,6 +82,9 @@ export class CurrentNav {
     @Output()
         public SideMenuHoverChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
+    @Output()
+        public NavigationChange: EventEmitter<string> = new EventEmitter<string>();
+
     constructor() { }
 
     private EmitMouseOver(e: MouseEvent){
@@ -89,6 +92,10 @@ export class CurrentNav {
     }
     private EmitMouseOut(e: MouseEvent){
         this.SideMenuHoverChange.emit(false);
+    }
+
+    private OnNavigationChange(u: string){
+        this.NavigationChange.emit(u);
     }
     
 }
