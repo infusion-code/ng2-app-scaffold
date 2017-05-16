@@ -78,8 +78,8 @@ export class AppComponent {
 
     private OnNavigationChange(u:string){
         if(!this._config.PushContentOnCurrentNavHover) {
-            this._sideMenuExpanded = false;
             this.ToggleSideMenu(false);
+            this._sideMenuHovered = false;
         }
         else{
             if(!this._sideMenuToggled) {
