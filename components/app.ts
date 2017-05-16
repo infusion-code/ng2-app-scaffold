@@ -77,9 +77,15 @@ export class AppComponent {
     }
 
     private OnNavigationChange(u:string){
-        if(!this._config.PushContentOnCurrentNavHover) this._sideMenuExpanded = false;
+        if(!this._config.PushContentOnCurrentNavHover) {
+            this._sideMenuExpanded = false;
+            this.ToggleSideMenu(false);
+        }
         else{
-            if(!this._sideMenuToggled) this._sideMenuExpanded = false;
+            if(!this._sideMenuToggled) {
+                this._sideMenuExpanded = false;
+                this._sideMenuHovered = false;
+            }
         }
     }
 
