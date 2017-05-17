@@ -139,6 +139,7 @@ export class GlobalNav {
     constructor(delegates: DelegateService){
         if(delegates.GetDelegate(this._notificationDelegateId)) this._hasNotificationDelegate = true;
         if(delegates.GetDelegate(this._breadcrumbDelegateId)) this._hasBreadcrumbDelegate = true;
+        if(delegates.GetDelegate(this._brandDelegateId)) this._hasBrandDelegate = true;
     }
 
     public ToggleSideMenu() {
