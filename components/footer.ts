@@ -1,13 +1,19 @@
 ﻿import { Component, Input } from '@angular/core';
+import { DelegateService } from '../services/delegateService';
 
 @Component({
     selector: 'app-footer',
     template: `
         <footer class="app-footer">
             <div class="wrapper">
-                <span class="pull-right">{{Version}} 
-                    <a *ngIf="VersionNotes != ''" [routerLink]="VersionNotes"><i class="fa fa-question-circle-o" title="Release Notes"></i></a>
-                </span>{{Copyright}}
+                <ng-container *ngIf="_hasFooterDelegate">
+                    <delegate-control [id]="_footerDelegateId"></delegate-control>
+                </ng-container>
+                <ng-container *ngIf="!_hasFooterDelegate">
+                    <span class="pull-right">{{Version}} 
+                        <a *ngIf="VersionNotes != ''" [routerLink]="VersionNotes"><i class="fa fa-question-circle-o" title="Release Notes"></i></a>
+                    </span>{{Copyright}}
+                </ng-container>
             </div>
         </footer>
     `,
@@ -28,6 +34,8 @@ export class Footer {
     private _copyright: string = "Copyright © 2017, Infusion.";
     private _version: string = "0.0.0";
     private _versionLink: string = "";
+    private _footerDelegateId: string = "footer.all";
+    private _hasFooterDelegate: boolean = false;    
 
     @Input()
         public get Copyright(): string { return this._copyright; }
@@ -41,5 +49,7 @@ export class Footer {
         public get VersionNotes(): string { return this._versionLink; }
         public set VersionNotes(val: string) { this._versionLink = val; }
 
-    constructor() { }
+    constructor(delegates: DelegateService) { 
+        if(delegates.GetDelegate(this._footerDelegateId)) this._hasFooterDelegate = true;
+    }
 }
