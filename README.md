@@ -36,20 +36,26 @@ Add the AppComponent as the bootstrap for your ng2 module and import the AppScaf
         ],
         providers: [
             {
-                provide: CurrentNavProvider, deps: [...], useFactory: (...) => {
-                    return new CurrentNavService(...);  
-                        // this is your implementation of the current navigation provider. 
-                }
+                provide: CurrentNavProvider, deps: [...], useFactory: NavProviderFactory
             },
             {
-                provide: ConfigService, deps: [], useFactory: () => {
-                    return new AppConfigService(); 
-                        // this is your implementation of the configuration service.
-                }
+                provide: ConfigService, deps: [], useFactory: ConfigProviderFactory
             }
         ]
     })
+
+    export function NavProviderFactory(...){
+        return new CurrentNavService(...); 
+            // this is your implementation of the current navigation provider.  
+    }
+
+    export function ConfigProviderFactory(){
+        return new AppConfigService(); 
+                  // this is your implementation of the configuration service. 
+    }
+
 ```
+> Note: The provider factory was moved into an exported method to accomodate Angular 4 requirements to no have lambda functions in the provider loading. 
 
 #Advanced
 Check out the [Wiki](../../wiki) for detailed documentation on components, models and providers. 
