@@ -1,9 +1,11 @@
+[![npm version](https://badge.fury.io/js/ng2-app-scaffold.svg)](https://www.npmjs.com/package/ng2-app-scaffold) ![ng2-app-scaffold](https://img.shields.io/npm/dm/ng2-app-scaffold.svg) [![Code Climate](https://codeclimate.com/github/infusion-code/angular-maps/badges/gpa.svg)](https://codeclimate.com/github/infusion-code/ng2-app-scaffold) [![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors)
+
 # Overview
 Angular2 scaffold that provides a set of components to create a repsonsive, modern application shell, including top nav with bread crumb, notifications, user info; current nav and footer. The components are service driven, so information can be fully customized by providing service overloads. In the preferred usage scenario, users would simple use the app component in the root application component and then use the router to manage the application content. This frees up developers on focusing on the actual app components.
 
-[![npm version](https://badge.fury.io/js/ng2-app-scaffold.svg)](https://www.npmjs.com/package/ng2-app-scaffold)
 
-![ng2-app-scaffold](https://img.shields.io/npm/dm/ng2-app-scaffold.svg)
+
+
 
 # Install
 Install via npm:
