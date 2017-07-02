@@ -4,6 +4,7 @@ npm-debug.log
 
 # angular aot files
 aot
+dist
 
 # OS generated files
 Thumbs.db
@@ -13,3 +14,4 @@ Thumbs.db
 *.js
 *.map
 *.d.ts
+*.metadata.json

@@ -1,5 +1,9 @@
 ﻿import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
+import { Observable } from 'rxjs/Observable';
 import { DelegateService } from '../services/delegateService';
+import { ConfigService } from '../services/configService';
+import 'rxjs/add/observable/timer';
 
 @Component({
     selector: 'global-nav',
@@ -136,7 +140,7 @@ export class GlobalNav {
     @Output()
         public SideMenuToggled: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-    constructor(delegates: DelegateService){
+    constructor(private _config: ConfigService, delegates: DelegateService){
         if(delegates.GetDelegate(this._notificationDelegateId)) this._hasNotificationDelegate = true;
         if(delegates.GetDelegate(this._breadcrumbDelegateId)) this._hasBreadcrumbDelegate = true;
         if(delegates.GetDelegate(this._brandDelegateId)) this._hasBrandDelegate = true;
@@ -145,6 +149,17 @@ export class GlobalNav {
     public ToggleSideMenu() {
         this._sideMenuToggled = !this._sideMenuToggled;
         this.SideMenuToggled.emit(this._sideMenuToggled);
+        
+        if(this._config.CloseCurrentNavWhenNoAction){
+            // automatically close the sidemenu after a while if not closed by action.
+            let s: Subscription = Observable.timer(5000).subscribe((i:number) => {
+                if(this._sideMenuToggled) {
+                    this._sideMenuToggled = false;
+                    this.SideMenuToggled.emit(this._sideMenuToggled);
+                }
+                s.unsubscribe();
+            });
+        }
     }
 
     public ToggleTopMenu() { this._topMenuToggled = !this._topMenuToggled;  }

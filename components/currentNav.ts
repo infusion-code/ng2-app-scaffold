@@ -4,7 +4,7 @@ import { DelegateService } from '../services/delegateService';
 @Component({
     selector: 'current-nav',
     template: `
-        <div class="side-menu sidebar-inverse" (mouseover)="EmitMouseOver($event)" (mouseout)="EmitMouseOut($event)">
+        <div class="side-menu sidebar-inverse" (mouseenter)="EmitMouseEnter($event)" (mouseleave)="EmitMouseLeave($event)">
             <nav class="navbar navbar-default" role="navigation">
                 <div class="side-menu-container">
                     <ng-container *ngIf="_hasBeforeNavDelegate">
@@ -87,10 +87,10 @@ export class CurrentNav {
 
     constructor() { }
 
-    private EmitMouseOver(e: MouseEvent){
+    private EmitMouseEnter(e: MouseEvent){
         this.SideMenuHoverChange.emit(true);
     }
-    private EmitMouseOut(e: MouseEvent){
+    private EmitMouseLeave(e: MouseEvent){
         this.SideMenuHoverChange.emit(false);
     }
 

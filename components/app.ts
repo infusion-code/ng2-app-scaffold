@@ -5,7 +5,7 @@ import { ConfigService } from '../services/configService';
     selector: 'app',
     template: `
         <global-css *ngIf="UseGlobalCss == true"></global-css>
-        <div class='app-container' [ngClass]="{'expanded': _sideMenuExpanded }">
+        <div class='app-container' [ngClass]="{'expanded': _sideMenuExpanded }" (click)="CollapseNavIfNecessary($event)">
             <div class="row content-container">
                 <global-nav [HomeLabel]="Title" [HomeIcon]="AppIcon" [ShowLeftNavToggle]="ShowLeftNavToggle" [ToggleCurrentNav]="_sideMenuExpanded || _sideMenuHovered" [ShowSubscriptions]="ShowSubscriptions" [ShowHero]="ShowHero" [ShowNotifications]="ShowNotifications" (SideMenuToggled)="ToggleSideMenu($event)"></global-nav>
                 <current-nav (SideMenuHoverChange)="HandleCurrentNavHoverChange($event)" (NavigationChange)="OnNavigationChange($event)"></current-nav>
@@ -61,22 +61,49 @@ export class AppComponent {
         this._sideMenuToggled = this._sideMenuExpanded;
     }
 
-    public ToggleSideMenu(state:boolean){
+    public ToggleSideMenu(state:boolean) {
         this._sideMenuToggled = state;
         this._sideMenuExpanded = state;
     }
 
-    private HandleCurrentNavHoverChange(state: boolean){
+    private CollapseNavIfNecessary(event: MouseEvent|any){
+        if(this._sideMenuExpanded === false) return;
+        if(event == null) return;
+        if(event.path == null) return;
+
+        let p:Array<HTMLElement> = event.path;
+        let isMenuClick = false;
+        for(let i=p.length-6; i>=0; i--){
+            // work the path backwards. We can skip the first 5 elements as they will always be the same: 
+            // window -> document -> html -> body -> app...
+            if(p[i].className.indexOf('side-menu') !== -1 || p[i].className.indexOf('navbar-expand-toggle') !== -1) {
+                isMenuClick = true;
+                break;
+            }
+        }
+        if(isMenuClick === false){
+            this.ToggleSideMenu(false);
+        }
+
+    }
+
+    private HandleCurrentNavHoverChange(state: boolean) {
         this._sideMenuHovered = state;
-        if(this._config.PushContentOnCurrentNavHover){
+        if(this._config.PushContentOnCurrentNavHover) {
             if(this._sideMenuToggled) this._sideMenuExpanded = true;
             else{
                 this._sideMenuExpanded = state;
             }
         }
+        else {
+            if(this._config.AlwaysCloseCurrentNavOnHoverOff && state === false) {
+                this._sideMenuExpanded = false;
+                this._sideMenuToggled = false;
+            }
+        }
     }
 
-    private OnNavigationChange(u:string){
+    private OnNavigationChange(u:string) {
         if(!this._config.PushContentOnCurrentNavHover) {
             this.ToggleSideMenu(false);
             this._sideMenuHovered = false;

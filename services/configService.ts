@@ -5,6 +5,8 @@ export class ConfigService {
     protected _storageKey: string;
     protected _expandCurrentNavOnLoad: boolean;
     protected _pushContentOnCurrentNavHover: boolean;
+    protected _alwaysCloseCurrentNavOnHoverOff: boolean;
+    protected _closeCurrentNavWhenNoAction: boolean;
     protected _showLeftNavToggle: boolean;
     protected _showSubscriptions: boolean;
     protected _showHero: boolean;
@@ -16,6 +18,8 @@ export class ConfigService {
     protected _version: string;
     protected _releaseNotes: string;
 
+    public get AlwaysCloseCurrentNavOnHoverOff(): boolean { return this._alwaysCloseCurrentNavOnHoverOff; }
+    public get CloseCurrentNavWhenNoAction(): boolean { return this._closeCurrentNavWhenNoAction; }
     public get ShowLeftNavToggle(): boolean { return this._showLeftNavToggle; }
     public get ShowSubscriptions(): boolean { return this._showSubscriptions; }
     public get ShowHero(): boolean { return this._showHero; }
@@ -39,6 +43,8 @@ export class ConfigService {
         this._showNotifications = true;
         this._expandCurrentNavOnLoad = false;
         this._pushContentOnCurrentNavHover = true;
+        this._alwaysCloseCurrentNavOnHoverOff = false;
+        this._closeCurrentNavWhenNoAction = false;
         this._useGlobalCss = true;
         this._copyright = "Copyright © 2010-2017, Infusion.";
         this._version = "0.0.1";
